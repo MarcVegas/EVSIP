@@ -1,0 +1,151 @@
+body {
+    background: url(/storage/interface/homepage3.jpg);
+    background-repeat: no-repeat
+}
+
+.nav.button {
+    margin-left: 0.5em!important
+}
+
+.pale {
+    background: #f6f6f6
+}
+
+.card.image {
+    position: relative!important
+}
+
+.logocard {
+    width: 80%!important;
+    margin: auto;
+    margin-top: 4em
+}
+
+.toc.item {
+    display: none
+}
+
+.floatdesc {
+    position: absolute;
+    bottom: 0;
+    padding: .5em;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+    color: white
+}
+
+.floatlabel {
+    position: absolute;
+    top: 8px;
+    margin-left: .5em!important
+}
+
+.subtitle {
+    font-family: Multicolore, sans-serif;
+    text-align: center
+}
+.sectiontitle {
+    font-family: 'Poppins', sans-serif;
+    color: orange;
+
+}
+.banner {
+    position: relative;
+}
+.adtitle {
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    position: absolute;
+    color: white;
+    font-size: 3em;
+    top: 30%;
+    left: 16px;
+}
+.sponsor {
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    position: absolute;
+    color: white;
+    top: 65%;
+    left: 16px;
+}
+.homestat {
+    position: relative !important;
+    -webkit-box-shadow: 0px 3px 22px -8px rgba(151,136,232,1);
+    -moz-box-shadow: 0px 3px 22px -8px rgba(151,136,232,1);
+    box-shadow: 0px 3px 22px -8px rgba(151,136,232,1);
+}
+.stattitle {
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    position: absolute;
+    color: white;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.statnumber {
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    position: absolute;
+    color: #def71e;
+    font-size: 3em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.slick-slide {
+    margin: 0 1em!important
+}
+
+.slick-list {
+    margin: 0 -1em!important;
+    padding-top: 1em
+}
+
+.solidwhite {
+    background: #ffffff!important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+    transition: all 0.5s ease
+}
+
+.shortreview {
+    font-family: Mollin, sans-serif;
+    font-size: 1.1em;
+    font-weight: 300
+}
+
+#map {
+    width: 700px;
+    height: 350px;
+    margin: auto
+}
+
+.ui.ui.transparent.inverted.input>textarea,
+.ui.ui.transparent.inverted.input>input {
+    color: inherit;
+    outline: 0!important;
+    padding-bottom: 4px!important;
+    border-width: 0 0 1px!important;
+    border-color: rgba(247, 241, 249, .5)!important
+}
+
+.inputfile {
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1
+}
+
+.ui.raised.link.view.card {
+    min-height: 300px!important;
+    background: url(/storage/interface/card.jpg);
+    border-radius: 0px !important;
+}
+
+.flashcard {
+    border-radius: 15px;
+    background-color: rgba(56, 47, 47, 0.116);
+}
