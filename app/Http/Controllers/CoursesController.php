@@ -102,7 +102,7 @@ class CoursesController extends Controller
     {
         $course = Course::where('course_id','=', $id)->first();
 
-        return view('/dashboard/admin/course/show')->with('course', $course);
+        return view('dashboard.admin.course.show')->with('course', $course);
     }
 
     /**

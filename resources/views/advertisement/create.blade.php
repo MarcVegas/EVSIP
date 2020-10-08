@@ -8,13 +8,7 @@
         @include('inc.messages')
         <div class="ui basic segment">
             <div class="ui secondary menu">
-                <div class="item">
-                    <a href="" class="ui button"><i class="save outline purple icon"></i> Save as draft</a>
-                </div>
                 <div class="right menu">
-                    <div class="item">
-                        <button class="ui button"><i class="eye blue icon"></i> Preview</button>
-                    </div>
                     <div class="item">
                         <button type="submit" form="ad-form" class="ui button"><i class="newspaper outline green icon"></i> Publish</button>
                     </div>

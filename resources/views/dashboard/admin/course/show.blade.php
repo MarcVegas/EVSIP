@@ -14,8 +14,7 @@
                         <div class="gradient-info card-icon long">
                             <h2 class="header center aligned" style="color: white;">Course info</h2>
                         </div><br><br>
-                        <form class="ui equal width form" action="{{route('courses.store')}}" method="POST">
-                            @csrf
+                        <div class="ui equal width form">
 
                             <div class="fields">
                                 <div class="field">
@@ -58,10 +57,8 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <textarea name="description" id="course-description" rows="6">
-                                    @if (!empty($course->description))
-                                        {{$course-description}}
-                                    @endif
+                                <textarea id="course-description" rows="6" readonly>
+                                    {{$course->description}}
                                 </textarea>
                             </div>
                             <div class="ui secondary stackable menu">
@@ -72,7 +69,7 @@
                                     <a type="submit" class="ui blue button" href="/dashboard/admin/courses/{{$course->course_id}}/edit"><i class="edit outline icon"></i>Edit</a>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="five wide column"></div>

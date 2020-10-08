@@ -1,13 +1,7 @@
 <div class="ui secondary menu" style="margin: 0px 0px !important;">
     <div class="right menu">
-        @if (Auth::user()->role === 'admin' && \App\School::where('school_id', Auth::user()->user_id)->first()->membership == 'free')
+        @if (Auth::user()->role == 'admin' && \App\School::where('school_id', Auth::user()->user_id)->first()->membership == 'free')
             <button class="ui inverted orange premium button"><i class="chess queen icon"></i> Go Premium</button>
-        @elseif(Auth::user()->role === 'siteadmin') 
-            
-        @else 
-            <div class="item">
-                <div class="ui green button"><i class="chess queen icon"></i> Premium Account</div>
-            </div>
         @endif
         <div class="item">
             <span>

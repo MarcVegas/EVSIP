@@ -39,6 +39,8 @@ class HomeController extends Controller
 
     public function show($id)
     {
+        $user = auth()->user()->user_id;
+
         $preview = Course::leftJoin('schools', 'courses.school_id', '=', 'schools.school_id')
         ->select('courses.*','courses.description as desc', 'schools.*')
         ->where('courses.course_id', $id)->first();
@@ -47,7 +49,7 @@ class HomeController extends Controller
         $admissions = Admission::where('user_id','=', $preview->school_id)->get();
         $school = User::where('user_id','=', $preview->school_id)->first();
         $location = Location::where('school_id', $preview->school_id)->first();
-        $registerCheck = Registration::where('course_id', $id)->first();
+        $registerCheck = Registration::where('course_id', $id)->where('user_id', $user)->first();
         $favoriteCheck = Favorite::where('course_id', $id)->where('user_id', auth()->user()->user_id)->first();
 
         return view('view-course')->with('preview', $preview)

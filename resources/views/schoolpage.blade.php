@@ -93,11 +93,11 @@
         <div class="ten wide column">
             <h5 class="sectiontitle"><i class="map marker icon"></i> FIND US HERE</h5>
             <img class="ui rounded image" src="/storage/interface/maptemp.jpg" alt="">
-            {{-- @if ($location ?? '')
+            @if ($location ?? '')
                 <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCbZMPoMaWaAnuSqpN3kMq8MBjIsYpqy4U&q=place_id:{{$location->place_id}}" frameborder="0" width="840" height="435" allowfullscreen></iframe>
             @else
                 <img class="ui rounded image" src="/storage/interface/maptemp.jpg" alt="">
-            @endif --}}
+            @endif
         </div>
         <div class="three wide column"></div>
     </div>

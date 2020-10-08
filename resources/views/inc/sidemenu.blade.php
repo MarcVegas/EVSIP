@@ -32,12 +32,6 @@
                 </div>
                 <i class="dropdown icon"></i>
             </div>
-            <a class="side item" href="#">
-                <div class="ui inline">
-                    <i class="audio description icon large"></i>
-                    Ad Management
-                </div>
-            </a>
             @elseif (Auth::user()->role === 'admin')
             <a class="item" href="/dashboard/{{Auth::user()->role}}">
                 <div class="ui inline">

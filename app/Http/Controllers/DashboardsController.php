@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Registration;
 use App\Student;
+use App\School;
+use App\Course;
 
 class DashboardsController extends Controller
 {
@@ -21,7 +23,9 @@ class DashboardsController extends Controller
         ->select('students.*', 'registrations.*')
         ->where('registrations.school_id', $school)->paginate(5);
 
-        return view('dashboard/admin/overview')->with('registrations', $registrations);
+        $courses = Course::where('school_id', $school)->count();
+
+        return view('dashboard/admin/overview')->with('registrations', $registrations)->with('courses', $courses);
     }
     
     //School department pages
