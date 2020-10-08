@@ -49,12 +49,12 @@
                     @endif
                 </div>
                 <div class="ui basic tab segment" data-tab="second" style="margin-left:5em;color:white;">
-                    {{-- @if ($location ?? '')
+                    @if ($location ?? '')
                         <h4><i class="map marker alternate orange icon"></i>{{$location->place_loc}}</h4>
                         <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCbZMPoMaWaAnuSqpN3kMq8MBjIsYpqy4U&q=place_id:{{$location->place_id}}" frameborder="0" width="550" height="360" allowfullscreen></iframe>
                     @else
                         <img class="ui big image" src="/storage/interface/maptemp.jpg" alt="">
-                    @endif --}}
+                    @endif
                 </div>
                 <div class="ui basic tab segment" data-tab="third" style="margin-left:5em;color:white;">
                     <h4><i class="file orange icon"></i> Bring the following documents</h4>
