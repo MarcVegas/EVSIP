@@ -72,6 +72,7 @@
         $('.basic.modal').modal('attach events', '.approve.button', 'show');
         $('.period.modal').modal('attach events', '.enroll.button', 'show');
         $('.linkpost.modal').modal('attach events', '.forum.button', 'show');
+        $('.appdeny.modal').modal('attach events', '.appdeny.button', 'show');
     </script>
     </body>
 </html>

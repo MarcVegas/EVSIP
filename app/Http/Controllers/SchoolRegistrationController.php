@@ -40,12 +40,12 @@ class SchoolRegistrationController extends Controller
 
     }
 
-    public function deny($id){
+    public function deny(Request $request,$id){
         $school = School::where('school_id','=', $id)->first();
         $name = $school->school_name;
 
         $user = User::where('user_id', $id)->first();
-        $reason = "";
+        $reason = $request->input('reason');
 
         Mail::to($user->email)->send(new AppDenyMail($name, $reason));
 

@@ -5,14 +5,6 @@
             <i class="home icon" style="padding-right:1.5em"></i>
                 Home
         </a>
-        <a class="item">
-            <i class="compass outline icon" style="padding-right:1.5em"></i> 
-                Explore
-        </a>
-        <a class="item">
-            <i class="fire icon" style="padding-right:1.5em"></i> 
-                Hot
-        </a>
         <a class="item" href="{{route('bookmark.index')}}">
             <i class="bookmark outline icon" style="padding-right:1.5em"></i> 
                 Bookmarks

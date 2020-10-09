@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\School;
 
 class PricingController extends Controller
 {
@@ -32,5 +33,11 @@ class PricingController extends Controller
 
     public function receipt(){
         return view('subscription.receipt');
+    }
+
+    public function updateMembership($id){
+        $school = School::where('school_id', $id)->first();
+        $school->membership = 'premium';
+        $school->save();
     }
 }

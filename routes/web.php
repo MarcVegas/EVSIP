@@ -80,6 +80,7 @@ Route::get('/matcher', 'MatcherController@index');
 Route::get('/dashboard/siteadmin/registrations', 'SchoolRegistrationController@index');
 Route::get('/dashboard/siteadmin/review/{id}', 'SchoolRegistrationController@show');
 Route::get('/dashboard/siteadmin/approve/{id}', 'SchoolRegistrationController@approve');
+Route::get('/dashboard/siteadmin/deny/{id}', 'SchoolRegistrationController@deny');
 
 //Login and registration controllers
 Route::get('/register/admin', 'AdminAuthController@register')->name('admin.register');
@@ -124,6 +125,7 @@ Route::get('/subscribe/plan/yearly', 'PricingController@yearly')->name('pricing.
 Route::get('/subscribe/success', 'PricingController@success');
 Route::get('/subscribe/cancel', 'PricingController@cancel');
 Route::get('/subscribe/receipt', 'PricingController@receipt');
+Route::get('/subscribe/membership/{id}', 'PricingController@updateMembership');
 
 //Email Controller
 Route::get('/email/registered', function ($id) {

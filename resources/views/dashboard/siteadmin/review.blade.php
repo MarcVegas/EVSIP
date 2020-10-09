@@ -55,7 +55,7 @@
                                 </div>
                             </div><br><br>
                             <div class="actions">
-                                <a href="" class="ui red button"><i class="delete icon"></i> Deny</a>
+                                <button class="ui red appdeny button"><i class="delete icon"></i> Deny</button>
                                 <a href="/dashboard/siteadmin/approve/{{$review->school_id}}" class="ui green right floated button"><i class="check icon"></i> Approve</a>
                             </div>
                         </div>
@@ -87,6 +87,18 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="ui mini appdeny modal">
+    <i class="close icon"></i>
+    <div class="header">Reject Application?</div>
+    <div class="content">
+        <form class="ui form" action="{!! action('SchoolRegistrationController@deny', $review->school_id) !!}" method="GET">
+            <div class="field">
+                <textarea name="reason" id="cekeditor-textarea" placeholder="Please provide reason for rejection" required></textarea>
+            </div>
+            <button class="ui right floated red button" type="submit">Confirm</button>
+        </form>
     </div>
 </div>
 @endsection

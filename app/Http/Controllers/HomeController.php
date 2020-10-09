@@ -11,6 +11,7 @@ use App\Admission;
 use App\Favorite;
 use App\Registration;
 use App\Location;
+use App\Advertisement;
 
 class HomeController extends Controller
 {
@@ -34,7 +35,10 @@ class HomeController extends Controller
         $courses = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
         ->select('courses.*', 'users.*')->paginate(8);
 
-        return view('home')->with('courses', $courses);
+        $ads = Advertisement::leftJoin('schools', 'advertisements.user_id','=','schools.school_id')
+        ->select('advertisements.*','schools.*')->get();
+
+        return view('home')->with('courses', $courses)->with('ads', $ads);
     }
 
     public function show($id)

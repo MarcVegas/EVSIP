@@ -17,24 +17,21 @@
         <div class="ten wide column">
             <h5 class="sectiontitle"><i class="thumbs up icon"></i> GREAT OFFERS YOU MIGHT LIKE</h5>
             <div class="jumbotron">
-                <div class="banner">
-                    <img src="/storage/interface/adbg1.png" width="845px">
-                    <h1 class="adtitle">Bachelor Science of Information Technology <span class="ui black big label"><p style="color: yellow;">20% OFF</p></span></h1>
-                    <p class="sponsor">Western Leyte College</p>
-                    <a class="ui purple large button" style="position: absolute;bottom: 25px;right: 5px;" href="#">Register Now</a>
-                </div>
-                <div class="banner">
-                    <img src="/storage/interface/adbg2.png" width="845px">
-                    <h1 class="adtitle">Bachelor Science of Secondary Education <span class="ui black big label"><p style="color: yellow;">20% OFF</p></span></h1>
-                    <p class="sponsor">Western Leyte College</p>
-                    <a class="ui purple large button" style="position: absolute;bottom: 25px;right: 5px;" href="#">Register Now</a>
-                </div>
-                <div class="banner">
-                    <img src="/storage/interface/adbg3.png" width="845px">
-                    <h1 class="adtitle">Bachelor Science of Business Administration <span class="ui black big label"><p style="color: yellow;">20% OFF</p></span></h1>
-                    <p class="sponsor">Western Leyte College</p>
-                    <a class="ui purple large button" style="position: absolute;bottom: 25px;right: 5px;" href="#">Register Now</a>
-                </div>
+                @foreach ($ads as $ad)
+                    <div class="banner">
+                        <img src="/storage/backgrounds/{{$ad->background}}" width="845px">
+                        <h1 class="adtitle">
+                            {{$ad->title}} 
+                            @if ($ad->discount != null)
+                            <span class="ui black big label"><p style="color: yellow;">{{$ad->discount}}% OFF</p></span>
+                            @endif
+                        </h1>
+                        <p class="sponsor">{{$ad->school_name}}</p>
+                        @if ($ad->link != null)
+                        <a class="ui purple large button" style="position: absolute;bottom: 25px;right: 5px;" href="/home/preview/{{$ad->user_id}}">Register Now</a>
+                        @endif
+                    </div>
+                @endforeach
             </div>
         </div>
         <div class="three wide column">

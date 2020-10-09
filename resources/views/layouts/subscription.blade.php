@@ -32,6 +32,8 @@
 <script src="{{ asset('js/semantic.min.js') }}"></script>
 <script src="{{ asset('js/master-semantic.min.js') }}"></script>
 <script>
+    var user_id = "{{Auth::user()->user_id}}";
+
     paypal.Buttons({
     createSubscription: function(data, actions) {
 
@@ -46,11 +48,29 @@
     onApprove: function(data, actions) {
 
     console.log('You have successfully created subscription ' + data.subscriptionID);
+    updateMembership();
     window.location.href = '/subscribe/success';
 
     }
 
     }).render('#paypal-button-container');
+
+    
+
+    function updateMembership() {
+        $.ajax({
+            type: "GET",
+            url: '/subscribe/membership/' + user_id,
+            data: "",
+            cache: false,
+            success: function (data) {
+                console.log('success');
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
 
     $('.ui.radio.checkbox').checkbox();
     $('.banktransfer.modal').modal('attach events', '.bank');
