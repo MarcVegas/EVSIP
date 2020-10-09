@@ -15,9 +15,6 @@
                     <div class="item">
                         <a class="ui inverted purple button" target="_blank" rel="noopener noreferrer" href="/page/{{Auth::user()->user_id}}"><i class="external alternate icon"></i> Visit Page</a>
                     </div>
-                    <div class="item">
-                        <button class="ui blue button"><i class="shirtsinbulk icon"></i>Select Theme</button>
-                    </div>
                 </div>
             </div>
             <div class="ui stackable grid">

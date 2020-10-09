@@ -40,7 +40,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="seven wide column">
+                <div class="twelve wide column">
                     <div class="ui grid">
                         <div class="row">
                             <div class="nine wide column">
@@ -91,58 +91,6 @@
                                     Send
                                 </button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="five wide column">
-                    <div class="ui segment">
-                        <h2 style="color: #434a77;">Profile</h2>
-                        <hr>
-                        @if (Auth::user()->role != 'student')
-                            <div class="ui secondary menu">
-                                <a class="active item" data-tab="first">Profile</a>
-                                <a class="item" data-tab="second">Responses</a>
-                            </div>
-                        @endif
-                        <div class="ui basic center aligned active tab segment" data-tab="first">
-                            <div class="ui basic center aligned segment">
-                                <br><br>
-                                <img src="/storage/interface/student.png" class="ui centered small image" alt="no scholarships">
-                                <h4>Profile is displayed here</h4>
-                            </div>
-                        </div>
-                        <div class="ui basic tab segment" data-tab="second">
-                            <div class="ui middle aligned horizontal list">
-                                <div class="item">
-                                    <a class="ui brown label">Requirements</a>
-                                    <div class="ui flowing popup top left transition hidden">
-                                        <h5>Requirements</h5>
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                             Reiciendis eligendi, excepturi accusamus dolorem perspiciatis</p>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <a class="ui brown label">Enrollment period</a>
-                                </div>
-                                <div class="item">
-                                    <a class="ui brown label">Scholarship</a>
-                                </div>
-                                <div class="item">
-                                    <a class="ui brown label">Courses</a>
-                                </div>
-                            </div>
-                            <h5>Add new automated response</h5>
-                            <form class="ui form">
-                                <div class="field">
-                                    <label>Keyword</label>
-                                    <input type="text" placeholder="Enter keyword">
-                                </div>
-                                <div class="field">
-                                    <label>Response</label>
-                                    <textarea rows="2" placeholder="Enter response"></textarea>
-                                </div>
-                                <button class="ui inverted violet icon labeled fluid button">Add Keyword <i class="plus icon"></i></button>
-                            </form>
                         </div>
                     </div>
                 </div>

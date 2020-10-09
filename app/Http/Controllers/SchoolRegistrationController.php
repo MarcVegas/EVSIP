@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApplicationMail;
+use App\Mail\AppDenyMail;
 use App\School;
 use App\Document;
+use App\User;
 
 class SchoolRegistrationController extends Controller
 {
@@ -28,8 +32,23 @@ class SchoolRegistrationController extends Controller
         $school->status = 'active';
         $school->save();
 
+        $user = User::where('user_id', $id)->first();
         $name = $school->school_name;
+
+        Mail::to($user->email)->send(new ApplicationMail($name));
         return view('/dashboard/siteadmin/registrations')->with('success', $name.' application has been approved');
 
+    }
+
+    public function deny($id){
+        $school = School::where('school_id','=', $id)->first();
+        $name = $school->school_name;
+
+        $user = User::where('user_id', $id)->first();
+        $reason = "";
+
+        Mail::to($user->email)->send(new AppDenyMail($name, $reason));
+
+        return view('/dashboard/siteadmin/registrations')->with('success', $name.' application has been denied');
     }
 }

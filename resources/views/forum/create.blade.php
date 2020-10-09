@@ -32,18 +32,18 @@
                     <input type="text" name="title" id="title" required autofocus>
                 </div>
                 <div class="inline fields">
-                    <label>Tag</label>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="button" class="ui inverted brown button" name="tag" id="tag" value="Announcement" tabindex="0">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="button" class="ui inverted secondary button" name="tag" id="tag" value="Discussion" tabindex="0">
-                        </div>
-                    </div>
                     @if (Auth::user()->role == 'siteadmin')
+                        <label>Tag</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="button" class="ui inverted brown button" name="tag" id="tag" value="Announcement" tabindex="0">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="button" class="ui inverted secondary button" name="tag" id="tag" value="Discussion" tabindex="0">
+                            </div>
+                        </div>
                         <div class="field">
                             <div class="ui radio checkbox">
                                 <input type="button" class="ui inverted green button" name="tag" id="tag" value="Featured" tabindex="0">

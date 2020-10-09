@@ -50,7 +50,7 @@ class HomeController extends Controller
         $school = User::where('user_id','=', $preview->school_id)->first();
         $location = Location::where('school_id', $preview->school_id)->first();
         $registerCheck = Registration::where('course_id', $id)->where('user_id', $user)->first();
-        $favoriteCheck = Favorite::where('course_id', $id)->where('user_id', auth()->user()->user_id)->first();
+        $favoriteCheck = Favorite::where('course_id', $id)->where('user_id', $user)->first();
 
         return view('view-course')->with('preview', $preview)
         ->with('admissions', $admissions)

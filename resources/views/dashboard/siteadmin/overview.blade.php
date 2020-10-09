@@ -19,15 +19,15 @@
                     <div class="column">
                         <div class="ui raised segment">
                             <img class="ui tiny left floated image" src="/storage/interface/university.png" alt="">
-                            <h2>15</h2>
+                            <h2>{{$school}}</h2>
                             <p>Schools</p>
                         </div>
                     </div>
                     <div class="column">
                         <div class="ui raised segment">
                             <img class="ui tiny left floated image" src="/storage/interface/report.png" alt="">
-                            <h2>340</h2>
-                            <p>Registrations today</p>
+                            <h2>{{$registered}}</h2>
+                            <p>Registrations</p>
                         </div>
                     </div>
                 </div>

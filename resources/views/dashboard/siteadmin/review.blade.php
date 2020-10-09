@@ -69,7 +69,7 @@
                         <div class="ui large middle aligned selection list">
                             @if (count($documents) > 0)
                                 @foreach ($documents as $document)
-                                    <a class="item" href="/storage/documents/{{$document->filename}}">
+                                    <a class="item" href="/storage/documents/{{$document->filename}}" target="_blank">
                                         <img class="ui mini left floated image" src="/storage/documents/{{$document->filename}}">
                                         <div class="content">
                                             <div class="header">{{$document->filename}}</div>

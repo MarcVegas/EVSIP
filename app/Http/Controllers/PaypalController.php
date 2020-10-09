@@ -58,7 +58,7 @@ class PaypalController extends Controller
     //Product Management
     public function listProduct(){
         $uri = 'https://api.sandbox.paypal.com/v1/catalogs/products?page_size=2&page=1&total_required=true';
-        $access_token = 'A21AAFUWLm8hxeKXVMqfrOZQCyiYkV16PId4yq_8O1McxSdKGCGdXRPLg0ogDx79kqBL1qtQ_EFT9EI4ym6y8tFWrFnR-Pxmg';
+        $access_token = 'A21AAJ1FYn1mqShIZr7nzYc0Wc4QSsszHLwMTu9SWIm_6UpVOPochUaCYUbV4Y3Wjw_zj-dBapaLf8_zHSa2pq-2PBUeLNA_g';
 
         $client = new Client();
         $response = $client->request('GET', $uri, [
@@ -95,7 +95,7 @@ class PaypalController extends Controller
     //Plan Management
     public function listPlan(){
         $uri = 'https://api.sandbox.paypal.com/v1/billing/plans?page_size=2&page=1&total_required=true';
-        $access_token = 'A21AAFUWLm8hxeKXVMqfrOZQCyiYkV16PId4yq_8O1McxSdKGCGdXRPLg0ogDx79kqBL1qtQ_EFT9EI4ym6y8tFWrFnR-Pxmg';
+        $access_token = 'A21AAJ1FYn1mqShIZr7nzYc0Wc4QSsszHLwMTu9SWIm_6UpVOPochUaCYUbV4Y3Wjw_zj-dBapaLf8_zHSa2pq-2PBUeLNA_g';
 
         $client = new Client();
         $response = $client->request('GET', $uri, [
@@ -155,7 +155,7 @@ class PaypalController extends Controller
 
     public function showSubscriber($id){
         $uri = 'https://api.sandbox.paypal.com/v1/billing/subscriptions/'.$id;
-        $access_token = 'A21AAFUWLm8hxeKXVMqfrOZQCyiYkV16PId4yq_8O1McxSdKGCGdXRPLg0ogDx79kqBL1qtQ_EFT9EI4ym6y8tFWrFnR-Pxmg';
+        $access_token = 'A21AAJ1FYn1mqShIZr7nzYc0Wc4QSsszHLwMTu9SWIm_6UpVOPochUaCYUbV4Y3Wjw_zj-dBapaLf8_zHSa2pq-2PBUeLNA_g';
 
         $client = new Client();
         $response = $client->request('GET', $uri, [

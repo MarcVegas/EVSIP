@@ -8,7 +8,6 @@
         <div class="ui basic segment">
             <div class="ui pointing menu">
                 <a href="#" class="active item" data-tab="first">Pending</a>
-                <a href="#" class="item" data-tab="second">Resubmissions</a>
                 <div class="right menu">
                     <div class="item">
                         <button class="ui button">Guidelines</button>
