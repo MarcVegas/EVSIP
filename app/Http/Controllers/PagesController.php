@@ -36,7 +36,12 @@ class PagesController extends Controller
         $location = Location::where('school_id', $id)->first();
         $page = Page::where('id', $id)->first();
 
+        $school = School::leftJoin('users', 'schools.school_id', '=', 'users.user_id')
+        ->select('schools.*', 'users.*')
+        ->where('schools.school_id', $id)->first();
+
         return view('schoolpage')->with('courses', $courses)
+        ->with('school', $school)
         ->with('location', $location)
         ->with('page', $page)
         ->with('announcements', $announcements);

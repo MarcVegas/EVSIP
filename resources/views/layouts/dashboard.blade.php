@@ -42,6 +42,11 @@
                 width: 34.6em;
                 height: 31.2em;
             }
+            .message-wrapper {
+                overflow-y:auto;
+                min-height: 25em;
+                max-height:30em;
+            }
         </style>
         <title>{{config('app.name', 'EVSIP')}}</title>
         

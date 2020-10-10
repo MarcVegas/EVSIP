@@ -102,6 +102,9 @@ class FavoritesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $favorite = Favorite::where('id', $id)->first();
+        $favorite->delete();
+
+        return redirect()->route('favorites.index')->with('success', 'Course removed from favorites');
     }
 }

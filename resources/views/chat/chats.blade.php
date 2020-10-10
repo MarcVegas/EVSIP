@@ -25,7 +25,7 @@
                                         <div class="content">
                                             <div class="header">{{$chat->username}} </div>
                                             @if($chat->unread)
-                                                <span class="pending">{{ $chat->unread }} unread messages</span>
+                                                <span class="pending">{{ $chat->unread }}</span> unread messages
                                             @endif
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="sixteen wide column" style="overflow-y:auto;max-height:30em;" id="messages">
+                            <div class="sixteen wide column" style="" id="messages">
                                 <div class="ui basic center aligned segment">
                                     <br><br>
                                     <img src="/storage/interface/chat.png" class="ui centered small image" alt="no posts">
@@ -106,28 +106,44 @@
         var my_id = "{{ Auth::user()->user_id }}";
 
         $(document).ready(function () {
-        $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-        });
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
 
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
 
-        var pusher = new Pusher('12c4db1b0696801100e9', {
-        cluster: 'ap1',
-        forceTLS: true
-        });
+            var pusher = new Pusher('12c4db1b0696801100e9', {
+            cluster: 'ap1',
+            forceTLS: true
+            });
 
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-            console.log('triggered');
-        });
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                if (my_id == data.from) {
+                    $('#' + data.to).click();
+                } else if (my_id == data.to) {
+                    if (receiver_id == data.from) {
+                        // if receiver is selected, reload the selected user ...
+                        $('#' + data.from).click();
+                    } /* else {
+                        // if receiver is not seleted, add notification for that user
+                        var pending = parseInt($('#' + data.from).find('.pending').html());
+
+                        if (pending) {
+                            $('#' + data.from).find('.pending').html(pending + 1);
+                        } else {
+                            $('#' + data.from).append('<span class="pending">1</span>');
+                        }
+                    } */
+                }
+            });
 
             $('.chats').click(function () {
                 receiver_id = $(this).attr('id');
+                $(this).find('.pending').remove();
                 $.ajax({
                     type: "GET",
                     url: '/messages/' + receiver_id,
@@ -135,6 +151,7 @@
                     cache: false,
                     success: function (data) {
                         $('#messages').html(data);
+                        scrollToBottomFunc();
                     },
                     error: function(data) {
                         console.log(data);
@@ -155,23 +172,7 @@
                     data: datastr,
                     cache: false,
                     success: function (data) {
-                        /* if (my_id == data.from) {
-                            $('#' + data.to).click();
-                        } else if (my_id == data.to) {
-                            if (receiver_id == data.from) {
-                                // if receiver is selected, reload the selected user ...
-                                $('#' + data.from).click();
-                            } else {
-                                // if receiver is not seleted, add notification for that user
-                                var pending = parseInt($('#' + data.from).find('.pending').html());
-
-                                if (pending) {
-                                    $('#' + data.from).find('.pending').html(pending + 1);
-                                } else {
-                                    $('#' + data.from).append('<span class="pending">1</span>');
-                                }
-                            }
-                        } */
+                        
                     },
                     error: function(jqXHR, status, err) {
                         console.log("some shit happened");
@@ -182,6 +183,13 @@
                 });
                 }
             });
+
+            function scrollToBottomFunc() {
+                $('.message-wrapper').animate({
+                    scrollTop: $('.message-wrapper').get(0).scrollHeight
+                }, 350);
+                console.log('scrolled');
+            }
         });
     </script>
 @endsection

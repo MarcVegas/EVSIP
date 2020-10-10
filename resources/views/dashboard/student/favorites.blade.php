@@ -44,8 +44,10 @@
                                         <div class="ui floating tasks dropdown icon button">
                                             <i class="dropdown icon"></i>
                                             <div class="menu">
-                                                <a class="item edit" href=""><i class="check icon"></i> Apply</a>
-                                                <a class="item deny"><i class="delete icon"></i> Remove</a>
+                                                <form action="{!! action('FavoritesController@destroy', $favorite->id) !!}" method="POST">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button class="item deny" type="submit"><i class="delete icon"></i> Remove</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
