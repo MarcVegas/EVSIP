@@ -33,10 +33,10 @@ class SchoolRegistrationController extends Controller
         $school->save();
 
         $user = User::where('user_id', $id)->first();
-        $name = $school->school_name;
+        
 
-        Mail::to($user->email)->send(new ApplicationMail($name));
-        return view('/dashboard/siteadmin/registrations')->with('success', $name.' application has been approved');
+        Mail::to($user->email)->send(new ApplicationMail($school->school_name));
+        return view('/dashboard/siteadmin/registrations')->with('success', $school->school_name.' application has been approved');
 
     }
 

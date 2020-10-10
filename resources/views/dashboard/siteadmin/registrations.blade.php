@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="ui basic segment">
-        @if (count($registrants) > 0)
+        @if ($registrants ?? '')
             <table class="ui selectable celled small table">
                 <thead>
                     <tr>

@@ -20,7 +20,7 @@ Route::get('/page/{id}', 'PagesController@page');
 Route::get('/course/register/{id}', 'PagesController@registerPage');
 Route::post('/course/registration', 'PagesController@registerCourse')->name('pages.store');
 Route::get('/course/success', 'PagesController@registered')->name('pages.prompt');
-Route::get('/all', 'PagesController@allcourses');
+Route::get('/all', 'PagesController@allcourses')->name('pages.all');
 
 //Home controller
 Route::get('/home/preview/{id}', 'HomeController@show')->name('course.preview');
@@ -126,6 +126,9 @@ Route::get('/subscribe/success', 'PricingController@success');
 Route::get('/subscribe/cancel', 'PricingController@cancel');
 Route::get('/subscribe/receipt', 'PricingController@receipt');
 Route::get('/subscribe/membership/{id}', 'PricingController@updateMembership');
+
+//Filter Course Controller
+Route::get('/filter/course', 'CoursesController@filterSearch');
 
 //Email Controller
 Route::get('/email/registered', function ($id) {

@@ -11,6 +11,7 @@ use App\Requirement;
 use App\Location;
 use App\Page;
 use App\Announcement;
+use App\Advertisement;
 
 class PagesController extends Controller
 {
@@ -92,11 +93,31 @@ class PagesController extends Controller
         return redirect()->route('pages.prompt');
     }
 
-    public function allcourses(){
+    public function allcourses(Request $request){
+        $searched = null;
+        if ($request->has('search')) {
+            $searchterm = $request->get('search');
+
+            $columns = ['courses.course_name','courses.duration','courses.abbreviation','schools.school_name'];
+
+            $query = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
+            ->leftJoin('schools', 'schools.school_id', '=', 'users.user_id')
+            ->select('courses.*', 'users.*', 'schools.*');
+
+            foreach ($columns as $column) {
+                $query->orWhere($column,'=', $searchterm);
+            }
+
+            $searched = $query->get();
+        }
+
         $courses = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
         ->select('courses.*', 'users.*')->paginate(8);
 
-        return view('allcourses')->with('courses', $courses);
+        $ads = Advertisement::leftJoin('schools', 'advertisements.user_id','=','schools.school_id')
+        ->select('advertisements.*','schools.*')->get();
+
+        return view('allcourses')->with('courses', $courses)->with('ads', $ads)->with('searched', $searched);
     }
 
     public function registered(){

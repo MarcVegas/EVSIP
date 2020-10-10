@@ -175,4 +175,23 @@ class CoursesController extends Controller
     {
         //
     }
+
+    public function filterSearch(Request $request){
+        if ($request->has('course_categ')) {
+            $course_categ = $request->get('course_categ');
+        }
+        if ($request->has('category')) {
+            $category = $request->get('category');
+        }
+        if ($request->has('type')) {
+            $type = $request->get('type');
+        }
+
+        $courses = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
+        ->leftJoin('schools', 'schools.school_id', '=', 'users.user_id')
+        ->select('courses.*', 'users.*', 'schools.*')->where('courses.course_categ', $course_categ)
+        ->where('schools.category', $category)->where('schools.type', $type)->paginate(9);
+
+        return view('filtercourse')->with('courses', $courses);
+    }
 }
