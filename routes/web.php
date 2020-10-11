@@ -33,12 +33,14 @@ Route::get('/dashboard/student', 'DashboardsController@student');
 
 //Profile controller
 Route::get('/dashboard/siteadmin/profile/{id}', 'SiteadminProfileController@show');
-Route::post('/dashboard/siteadmin/profile/update/{id}', 'SiteadminProfileController@update');
+Route::put('/dashboard/siteadmin/profile/update/{id}', 'SiteadminProfileController@update');
 Route::get('/dashboard/admin/profile/{id}', 'AdminProfileController@show');
 Route::post('/dashboard/admin/profile/update/{id}', 'AdminProfileController@update');
 Route::post('/dashboard/admin/profile/location', 'AdminProfileController@location')->name('location.store');
 Route::get('/dashboard/student/profile/{id}', 'StudentProfileController@show');
 Route::post('/dashboard/student/profile/update/{id}', 'StudentProfileController@update');
+Route::get('/dashboard/department/profile/{id}', 'SubdminProfileController@show');
+Route::put('/dashboard/department/profile/update/{id}', 'SubdminProfileController@update');
 
 //Favorites controller
 Route::resource('/dashboard/student/favorites', 'FavoritesController');
@@ -98,7 +100,7 @@ Route::post('/advertisements/draft', 'AdvertisementController@draft')->name('adv
 
 //School Page controller
 Route::post('/page/mandv', 'SchoolPagesController@store')->name('schoolpage.store');
-Route::post('/page/enrollmentperiod', 'SchoolPagesController@eperiod')->name('schoolpage.eperiod');
+Route::put('/page/enrollmentperiod/{id}', 'SchoolPagesController@eperiod')->name('schoolpage.eperiod');
 
 //Gallery Controller
 Route::resource('/galleries', 'GalleryController');

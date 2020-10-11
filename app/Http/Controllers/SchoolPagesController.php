@@ -30,25 +30,24 @@ class SchoolPagesController extends Controller
         return redirect()->route('adminpage.index')->with('success', 'Mission and Vission updated');
     }
 
-    public function eperiod(Request $request){
+    public function eperiod(Request $request, $id){
         $this->validate($request, [
             'enrollment_start' => 'required',
             'enrollment_end' => 'required',
-            'user_id' => 'required|integer',
         ]);
 
         $pagecheck = Page::where('id', $request->input('user_id'))->first();
-
-        if (is_null($pagecheck)) {
+        $pagecheck->enrollment_start = $request->input('enrollment_start');
+        $pagecheck->enrollment_end = $request->input('enrollment_end');
+        $pagecheck->save();
+        /* if (is_null($pagecheck)) {
             $page = new Page;
             $page->enrollment_start = $request->input('enrollment_start');
             $page->enrollment_end = $request->input('enrollment_end');
             $page->save();
         } else {
-            $pagecheck->enrollment_start = $request->input('enrollment_start');
-            $pagecheck->enrollment_end = $request->input('enrollment_end');
-            $pagecheck->save();
-        }
+            
+        } */
         
         return redirect()->route('adminpage.index')->with('success', 'Enrollment period successfuly set');
     }

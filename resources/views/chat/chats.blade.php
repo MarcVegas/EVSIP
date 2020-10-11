@@ -25,7 +25,7 @@
                                         <div class="content">
                                             <div class="header">{{$chat->username}} </div>
                                             @if($chat->unread)
-                                                <span class="pending">{{ $chat->unread }}</span> unread messages
+                                                <span class="pending">{{ $chat->unread }}</span><span id="unread-text">unread messages</span>
                                             @endif
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
                     if (receiver_id == data.from) {
                         // if receiver is selected, reload the selected user ...
                         $('#' + data.from).click();
-                    } /* else {
+                    } else {
                         // if receiver is not seleted, add notification for that user
                         var pending = parseInt($('#' + data.from).find('.pending').html());
 
@@ -137,13 +137,14 @@
                         } else {
                             $('#' + data.from).append('<span class="pending">1</span>');
                         }
-                    } */
+                    }
                 }
             });
 
             $('.chats').click(function () {
                 receiver_id = $(this).attr('id');
                 $(this).find('.pending').remove();
+                $(this).find('#unread-text').remove();
                 $.ajax({
                     type: "GET",
                     url: '/messages/' + receiver_id,

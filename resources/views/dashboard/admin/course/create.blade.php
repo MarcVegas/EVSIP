@@ -82,7 +82,7 @@
                                         <option value="">Select Department</option>
                                         @if (count($deps) > 0)
                                             @foreach ($deps as $dep)
-                                                <option value="{{$dep->username}}">{{$dep->username}}</option>
+                                                <option value="{{$dep->user_id}}">{{$dep->username}}</option>
                                             @endforeach
                                         @else 
                                             <option value="0" class="ui error message" disabled>You must add department accounts first!

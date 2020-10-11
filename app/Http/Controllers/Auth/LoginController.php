@@ -52,6 +52,8 @@ class LoginController extends Controller
                 return '/account/inactive';
             }
             
+        }elseif (auth()->user()->role == 'subadmin'){
+            return '/dashboard/department';
         }
         else {
             return '/home';

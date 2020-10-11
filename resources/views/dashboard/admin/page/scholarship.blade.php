@@ -40,7 +40,10 @@
                                         <i class="ellipsis vertical icon"></i>
                                             <div class="menu">
                                                 <a class="edit item" href="/scholarships/{{$scholarship->id}}/edit"><i class="edit icon"></i> Edit</a>
-                                                <a class="item" href="#"><i class="trash icon"></i> Delete</a>
+                                                <button class="item" form="scholar-delete" type="submit"><i class="trash icon"></i> Delete</button>
+                                                <form id="scholar-delete" action="{!! action('ScholarshipsController@destroy', $scholarship->id) !!}" method="POST">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                </form>
                                             </div>
                                         </div>
                                         <p style="font-style:italic">Added on: {{$scholarship->created_at}}</p>

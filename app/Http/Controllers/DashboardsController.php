@@ -8,6 +8,7 @@ use App\Student;
 use App\School;
 use App\Course;
 use App\Favorite;
+use App\Department;
 
 class DashboardsController extends Controller
 {
@@ -35,7 +36,20 @@ class DashboardsController extends Controller
     
     //School department pages
     public function department(){
-        return view('dashboard/department/overview');
+        $subadmin = auth()->user()->user_id;
+
+        $school = Department::where('user_id', $subadmin)->first();
+
+        $registrations = Student::leftJoin('registrations', 'students.user_id', '=', 'registrations.user_id')
+        ->leftJoin('courses', 'registrations.course_id', '=', 'courses.course_id')
+        ->select('students.*', 'registrations.*', 'courses.*')
+        ->where('registrations.school_id', $school->school_id)
+        ->where('courses.department', $subadmin)->paginate(5);
+
+        $courses = Course::where('department', $subadmin)->count();
+
+        return view('dashboard/department/overview')->with('registrations', $registrations)
+        ->with('courses', $courses);
     }
 
     //Student pages

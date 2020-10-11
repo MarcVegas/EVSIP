@@ -93,6 +93,25 @@
                     Favorites
                 </div>
             </a>
+            @elseif (Auth::user()->role === 'subadmin')
+            <a class="item" href="/dashboard/department">
+                <div class="ui inline">
+                    <i class="chart bar outline icon large"></i>
+                    Dashboard
+                </div>
+            </a>
+            <a class="item" href="">
+                <div class="ui inline">
+                    <i class="user outline icon large"></i>
+                    Account Setting
+                </div>
+            </a>
+            <a class="item" href="">
+                <div class="ui inline">
+                    <i class="users icon large large"></i>
+                    Registration
+                </div>
+            </a>
             @endif
             <a class="side item" href="{{route('messages.index')}}">
                 <div class="ui inline">

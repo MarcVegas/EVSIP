@@ -87,6 +87,9 @@ class MessagesController extends Controller
     {
         $my_id = auth()->user()->user_id;
 
+        //Make unread messages as read
+        Message::where(['from' => $id, 'to' => $my_id])->update(['is_read' => 1]);
+
         $messages = Message::where(function ($query) use ($id, $my_id){
             $query->where('from', $my_id)->where('to', $id);
         })->orWhere(function ($query) use ($id, $my_id){
