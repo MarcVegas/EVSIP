@@ -7,14 +7,7 @@
     <div class="pale" style="margin-top: 1em; height: 41em;">
         @include('inc.messages')
         <div class="ui basic segment">
-            <div class="ui secondary menu">
-                <div class="ui left icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search icon"></i>
-                </div>
-            </div>
-        </div>
-        <div class="ui basic segment">
+            <h3>Pending Registrations</h3>
             @if ($registrations ?? '')
                 <table class="ui selectable celled small table">
                     <thead>

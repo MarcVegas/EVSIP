@@ -119,7 +119,14 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $my_id = auth()->user()->user_id;
+        $assign = $request->get('assigned_to');
+
+        $messages = Message::where(function ($query) use ($id, $my_id){
+            $query->where('from', $my_id)->where('to', $id);
+        })->orWhere(function ($query) use ($id, $my_id){
+            $query->where('from', $id)->where('to', $my_id);
+        })->update(['assigned_to' => $assign]);
     }
 
     /**

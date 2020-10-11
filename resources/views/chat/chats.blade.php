@@ -55,7 +55,7 @@
                                             <div class="header">Assign to</div>
                                             @if (count($departments) > 0)
                                                 @foreach ($departments as $department)
-                                                    <div class="item">
+                                                    <div class="dep item" id="{{$department->user_id}}">
                                                         <img class="ui mini avatar image" src="/storage/avatars/{{$department->avatar}}" alt="">
                                                         {{$department->username}}
                                                     </div>
@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <button class="ui tiny basic icon button"><i class="trash alternate outline icon"></i></button>
+                                {{-- <button class="ui tiny basic icon button"><i class="trash alternate outline icon"></i></button> --}}
                             </div>
                         </div>
                         <div class="row">
@@ -183,6 +183,24 @@
                     }
                 });
                 }
+            });
+
+            $('.dep.item').click(function () {
+                var assigned_to = $(this).attr('id');
+
+                var datastr = "assigned_to=" + assigned_to;
+                    $.ajax({
+                        type: "PUT",
+                        url: '/messages/assign/' + receiver_id,
+                        data: datastr,
+                        cache: false,
+                        success: function (data) {
+                            
+                        },
+                        error: function(jqXHR, status, err) {
+                            console.log("some shit happened");
+                        }
+                    });
             });
 
             function scrollToBottomFunc() {

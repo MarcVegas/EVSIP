@@ -39,8 +39,8 @@ Route::post('/dashboard/admin/profile/update/{id}', 'AdminProfileController@upda
 Route::post('/dashboard/admin/profile/location', 'AdminProfileController@location')->name('location.store');
 Route::get('/dashboard/student/profile/{id}', 'StudentProfileController@show');
 Route::post('/dashboard/student/profile/update/{id}', 'StudentProfileController@update');
-Route::get('/dashboard/department/profile/{id}', 'SubdminProfileController@show');
-Route::put('/dashboard/department/profile/update/{id}', 'SubdminProfileController@update');
+Route::get('/dashboard/department/profile/{id}', 'SubadminProfileController@show');
+Route::put('/dashboard/department/profile/update/{id}', 'SubadminProfileController@update');
 
 //Favorites controller
 Route::resource('/dashboard/student/favorites', 'FavoritesController');
@@ -53,6 +53,7 @@ Route::resource('/dashboard/admin/departments', 'DepartmentsController');
 
 //Student registration controller
 Route::resource('/dashboard/admin/registrations', 'StudentRegistrationController');
+Route::get('/dashboard/subadmin/registrations/{id}', 'StudentRegistrationController@getDepRegistrations');
 
 //Forum controller
 Route::resource('/forum', 'ForumController');
@@ -68,6 +69,8 @@ Route::delete('/bookmarks/{id}', 'BookmarkController@destroy')->name('bookmark.d
 Route::get('/message', 'MessagesController@index')->name('messages.index');
 Route::get('/messages/{id}', 'MessagesController@show')->name('messages.show');
 Route::post('messages', 'MessagesController@store')->name('messages.store');
+Route::put('/messages/assign/{id}', 'MessagesController@update');
+
 
 //Scholarships controller
 Route::resource('/scholarships', 'ScholarshipsController');

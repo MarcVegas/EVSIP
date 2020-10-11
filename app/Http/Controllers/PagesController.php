@@ -12,6 +12,7 @@ use App\Location;
 use App\Page;
 use App\Announcement;
 use App\Advertisement;
+use App\Admission;
 
 class PagesController extends Controller
 {
@@ -55,8 +56,10 @@ class PagesController extends Controller
         $school = School::leftJoin('users', 'users.user_id', '=', 'schools.school_id')
         ->select('users.*','schools.*')
         ->where('schools.school_id', $course->school_id)->first();
+        $admissions = Admission::where('user_id','=', $school->school_id)->get();
 
-        return view('register')->with('school', $school)->with('course', $course)->with('student', $student);
+        return view('register')->with('school', $school)->with('course', $course)->with('student', $student)
+        ->with('admissions', $admissions);
     }
 
     public function registerCourse(Request $request){

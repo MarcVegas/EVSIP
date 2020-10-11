@@ -142,7 +142,7 @@
         </div>
         <div class="ui segment">
             <div id="chat-feed">
-                <div class="ui basic center aligned segment" id="messages">
+                <div class="ui basic segment" id="messages">
                     <i class="comments outline teal big icon"></i>
                     <br>
                     Get in touch by sending us a message
@@ -173,6 +173,12 @@
                 }
             });
 
+            var resizePopup = function(){$('.ui.popup').css('max-height', $(window).height());};
+
+            $(window).resize(function(e){
+                resizePopup();
+            });
+
             Pusher.logToConsole = true;
 
             var pusher = new Pusher('12c4db1b0696801100e9', {
@@ -187,7 +193,11 @@
 
             $('.chatapp.button').popup({
                 popup : $('.custom.popup'),
-                on    : 'click'
+                on    : 'click',
+                lastResort: 'bottom right',
+                onShow: function(){
+                    resizePopup();
+                },
             });
 
             function fetchMessages() {

@@ -62,6 +62,7 @@
             .receiver:last-of-type {
                 border-bottom-right-radius: 30px;
             }
+            
         </style>
         <link rel="icon" href="/storage/interface/favicon.png">
         <title>{{config('app.name', 'EVSIP')}}</title>
@@ -70,6 +71,7 @@
     <body>
     @yield('content')
     @include('inc.footer')
+    <script src="https://js.pusher.com/5.1/pusher.min.js"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="{{asset('js/master-semantic.min.js')}}"></script>

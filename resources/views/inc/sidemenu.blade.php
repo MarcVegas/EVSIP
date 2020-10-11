@@ -100,13 +100,13 @@
                     Dashboard
                 </div>
             </a>
-            <a class="item" href="">
+            <a class="item" href="/dashboard/department/profile/{{Auth::user()->user_id}}">
                 <div class="ui inline">
                     <i class="user outline icon large"></i>
                     Account Setting
                 </div>
             </a>
-            <a class="item" href="">
+            <a class="item" href="/dashboard/subadmin/registrations/{{Auth::user()->user_id}}">
                 <div class="ui inline">
                     <i class="users icon large large"></i>
                     Registration

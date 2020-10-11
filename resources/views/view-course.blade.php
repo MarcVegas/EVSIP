@@ -8,7 +8,6 @@
             <a class="active item" data-tab="first">Overview</a>
             <a class="item" data-tab="second">Location</a>
             <a class="item" data-tab="third">Requirements</a>
-            <a class="item" data-tab="fourth">Careers</a>
         </div>
         <div class="ui mobile reversed stackable grid">
             <div class="four wide column">
@@ -72,7 +71,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="ui basic tab segment" data-tab="fourth" style="margin-left:5em;color:white;">
+                {{-- <div class="ui basic tab segment" data-tab="fourth" style="margin-left:5em;color:white;">
                     <h4><i class="user md orange icon"></i> Career oppurtunities for this course</h4>
                     <small>Mouse over an item to learn more about a particular career path</small><br><br>
                     <div class="ui relaxed grid">
@@ -103,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

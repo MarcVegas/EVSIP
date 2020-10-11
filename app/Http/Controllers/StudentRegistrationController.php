@@ -9,6 +9,7 @@ use App\User;
 use App\Requirement;
 use App\School;
 use App\Course;
+use App\Department;
 use App\Mail\RegisteredMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -131,5 +132,20 @@ class StudentRegistrationController extends Controller
 
     public function deny(){
         
+    }
+
+    public function getDepRegistrations($id){
+        $subadmin = auth()->user()->user_id;
+
+        $school = Department::where('user_id', $subadmin)->first();
+
+        $registrations = Student::leftJoin('registrations', 'students.user_id', '=', 'registrations.user_id')
+        ->leftJoin('courses', 'registrations.course_id', '=', 'courses.course_id')
+        ->select('students.*', 'registrations.*', 'courses.*')
+        ->where('registrations.school_id', $school->school_id)
+        ->where('courses.department', $subadmin)
+        ->where('status', 'pending')->get();
+
+        return view('/dashboard/department/registrations')->with('registrations', $registrations);
     }
 }
