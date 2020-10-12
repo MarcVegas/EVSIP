@@ -28,7 +28,12 @@ class StudentRegistrationController extends Controller
         ->select('students.*', 'registrations.*')
         ->where('registrations.school_id', $school)->where('status', 'pending')->get();
 
-        return view('/dashboard/admin/registrations')->with('registrations', $registrations);
+        $all = Student::leftJoin('registrations', 'students.user_id', '=', 'registrations.user_id')
+        ->select('students.*', 'registrations.*')
+        ->where('registrations.school_id', $school)->get();
+
+        return view('/dashboard/admin/registrations')->with('registrations', $registrations)
+        ->with('all', $all);
     }
 
     /**

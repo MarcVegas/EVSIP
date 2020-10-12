@@ -23,6 +23,12 @@
                     Registration
                 </div>
             </a>
+            <a class="side item" href="">
+                <div class="ui inline">
+                    <i class="audio description icon large"></i>
+                    Ad Management
+                </div>
+            </a>
             <div class="ui left pointing dropdown link item">
                 <span><i class="paypal large icon"></i> Subscription</span>
                 <div class="menu">

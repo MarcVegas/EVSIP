@@ -15,15 +15,14 @@
                         <button class="ui button">Guidelines</button>
                     </div>
                     <div class="item">
-                        {{-- <a class="ui green approve button" onclick="event.preventDefault();
+                        <a class="ui green approve button" onclick="event.preventDefault();
                         document.getElementById('approve-form').submit();"><i class="check icon"></i> Approve</a>
                         <form id="approve-form" action="{!! action('StudentRegistrationController@update', $profile->user_id) !!}" method="POST" style="display: none;">
                             @csrf
                             <input type="hidden" name="course_id" id="course_id" value="{{$profile->course_id}}">
                             <input type="hidden" name="school_id" id="school_id" value="{{$profile->school_id}}">
                             <input type="hidden" name="_method" value="PUT">
-                        </form> --}}
-                        <button class="ui green approve button"><i class="check icon"></i> Approve</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -78,7 +77,11 @@
                         @foreach ($requirements as $requirement)
                             <div class="card" >
                                 <div class="image">
-                                    <img src="/storage/requirements/{{$requirement->filename}}" alt="">
+                                    @if ($requirement->type == 'pdf')
+                                        <img src="/storage/requirements/pdf.png" alt="">
+                                    @else
+                                        <img src="/storage/requirements/{{$requirement->filename}}" alt="">
+                                    @endif
                                 </div>
                                 <div class="content">
                                     <div class="header">{{$requirement->filename}}</div>
@@ -86,8 +89,8 @@
                                 </div>
                                 <div class="extra content">
                                     <div class="ui two buttons">
-                                        <a class="ui button" href="/storage/requirements/{{$requirement->filename}}">View</a>
-                                        <a class="ui button" href="/storage/requirements/{{$requirement->filename}}" download="{{$requirement->filename}}">Download</a>
+                                        <a class="ui button" href="/storage/requirements/{{$requirement->filename}}" target="_blank">View</a>
+                                        <a class="ui button" href="/storage/requirements/{{$requirement->filename}}" download="{{$requirement->filename}}" target="_blank">Download</a>
                                     </div>
                                 </div>
                             </div>

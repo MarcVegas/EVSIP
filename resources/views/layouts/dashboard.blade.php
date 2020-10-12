@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/gradientcolors.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css')}}" rel="stylesheet">
         <link rel="icon" href="/storage/interface/favicon.png">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -61,18 +62,13 @@
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
     <script src="{{ asset('js/master-semantic.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.min.js') }}" defer></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     @yield('ajax')
+    @stack('datatables')
+    @stack('ckeditor')
     <script>
-        ClassicEditor
-        .create( document.querySelector( '#ckeditor-textarea' ) )
-        .then( editor => {
-            console.log( editor );
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
-
+        
         $('.premium.modal').modal('attach events', '.premium.button', 'show');
         $('.basic.modal').modal('attach events', '.approve.button', 'show');
         $('.period.modal').modal('attach events', '.enroll.button', 'show');

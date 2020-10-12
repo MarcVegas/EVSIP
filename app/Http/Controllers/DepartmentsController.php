@@ -23,7 +23,7 @@ class DepartmentsController extends Controller
 
         $departments = User::leftJoin('departments', 'users.user_id', '=', 'departments.user_id')
         ->select('users.*', 'departments.*')
-        ->where(['departments.school_id' => $school],['users.role', 'subadmin'])->paginate(5);
+        ->where(['departments.school_id' => $school],['users.role', 'subadmin'])->get();
 
         return view('dashboard/admin/department/departments')->with('departments', $departments);
     }
@@ -92,7 +92,11 @@ class DepartmentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::leftJoin('departments', 'users.user_id', '=', 'departments.user_id')
+        ->select('users.*', 'departments.*')
+        ->where('departments.user_id', $id)->first();
+
+        return view('dashboard/admin/department/show')->with('user', $user);
     }
 
     /**

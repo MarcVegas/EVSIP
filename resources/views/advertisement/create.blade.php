@@ -86,3 +86,17 @@
 </div>
 @include('modal.modal-premium')
 @endsection
+
+@push('ckeditor')
+    <script>
+        $(document).ready(function (){
+            ClassicEditor.create( document.querySelector( '#ckeditor-textarea' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+        });
+    </script>
+@endpush

@@ -8,18 +8,16 @@
         @include('inc.messages')
         <div class="ui basic segment">
             <div class="ui secondary menu">
-                <div class="ui left icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search icon"></i>
-                </div>
                 <div class="right menu">
-                    <a class="ui blue button" href="{{route('courses.create')}}"><i class="plus icon"></i> Add Course</a>
+                    <div class="item">
+                        <a class="ui blue button" href="{{route('courses.create')}}"><i class="plus icon"></i> Add Course</a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="ui basic segment">
             @if (count($courses) > 0)
-                <table class="ui selectable celled small table">
+                <table class="ui selectable celled small table" id="responsive-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -41,16 +39,7 @@
                                 <td>{{$course->tuition}}</td>
                                 <td>{{$course->enrollment}}</td>
                                 <td>
-                                    <div class="ui blue buttons">
-                                        <a class="ui view button" href="/dashboard/admin/courses/{{$course->course_id}}">View</a>
-                                        <div class="ui floating tasks dropdown icon button">
-                                            <i class="dropdown icon"></i>
-                                            <div class="menu">
-                                                <a class="item edit" href="/dashboard/admin/courses/{{$course->course_id}}/edit"><i class="edit outline icon"></i> Edit</a>
-                                                <a class="item deny"><i class="delete icon"></i> Remove</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a class="ui view button" href="/dashboard/admin/courses/{{$course->course_id}}"><i class="eye icon"></i> View</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -69,3 +58,18 @@
 </div>
 @include('modal.modal-premium')
 @endsection
+
+@push('datatables')
+<script>
+    $(document).ready(function (){
+        $('#responsive-table').DataTable({
+            "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+            "order": [],
+            "columnDefs": [ {
+                "targets"  : 'no-sort',
+                "orderable": false,
+            }]
+        });
+    });
+</script>
+@endpush

@@ -135,7 +135,9 @@ class AdvertisementController extends Controller
         //
     }
 
-    public function draft(Request $request){
-
+    public function allAds(){
+        $advertisements = Advertisement::all();
+        
+        return view('advertisement.advertise')->with('advertisements', $advertisements);
     }
 }

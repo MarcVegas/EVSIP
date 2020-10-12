@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Chat;
+use App\Department;
 use App\Message;
+use App\School;
 use Illuminate\Support\Facades\DB;
 use Pusher\Pusher;
 
@@ -20,11 +22,14 @@ class MessagesController extends Controller
     {
         $user_id = auth()->user()->user_id;
 
+        $school = Department::where('user_id', $user_id)->first();
+
         //$chats = User::where('role','<>','subadmin')->where('user_id','<>', $user_id)->get();
         $chats = DB::select("select users.user_id, users.username, users.avatar, users.email, messages.assigned_to, count(is_read) as unread 
-        from users LEFT  JOIN  messages ON users.user_id = messages.from and is_read = 0 and messages.to = " . auth()->user()->user_id . "
-        where users.user_id != " . auth()->user()->user_id . " AND (users.user_id = messages.from OR users.user_id = messages.to)
-         group by users.user_id, users.username, users.avatar, users.email, messages.assigned_to");
+            from users LEFT  JOIN  messages ON users.user_id = messages.from and is_read = 0 and messages.to = " . auth()->user()->user_id . "
+            where users.user_id != " . auth()->user()->user_id . " AND (users.user_id = messages.from OR users.user_id = messages.to)
+            group by users.user_id, users.username, users.avatar, users.email, messages.assigned_to");
+        
 
         $departments = User::where(['role' => 'subadmin'],['user_id','=', $user_id])->get();
 
@@ -86,7 +91,7 @@ class MessagesController extends Controller
     public function show($id)
     {
         $my_id = auth()->user()->user_id;
-
+        
         //Make unread messages as read
         Message::where(['from' => $id, 'to' => $my_id])->update(['is_read' => 1]);
 
@@ -127,6 +132,11 @@ class MessagesController extends Controller
         })->orWhere(function ($query) use ($id, $my_id){
             $query->where('from', $id)->where('to', $my_id);
         })->update(['assigned_to' => $assign]);
+
+        Message::where('from', $my_id)->where('to', $id)->update(['from', $assign]);
+        Message::where('from', $id)->where('to', $my_id)->update(['to', $assign]);
+
+        Message::where(['from' => $id, 'to' => $my_id])->update(['is_read' => 0]);
     }
 
     /**

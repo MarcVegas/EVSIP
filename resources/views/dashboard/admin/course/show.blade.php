@@ -61,12 +61,17 @@
                                     {{$course->description}}
                                 </textarea>
                             </div>
-                            <div class="ui secondary stackable menu">
+                            <div class="ui secondary menu">
                                 <div class="item">
-                                    <a class="ui button" href="{{route('courses.index')}}"><i class="angle left icon"></i> Go back</a>
+                                    <a class="ui button" href="{{route('courses.index')}}">Back</a>
                                 </div>
-                                <div class="right item">
-                                    <a type="submit" class="ui blue button" href="/dashboard/admin/courses/{{$course->course_id}}/edit"><i class="edit outline icon"></i>Edit</a>
+                                <div class="right menu">
+                                    <div class="item">
+                                        <a class="ui blue button" href="{{$course->course_id}}/edit"><i class="edit icon"></i>Edit</a>
+                                    </div>
+                                    <div class="item">
+                                        <button class="ui red delete button"><i class="trash icon"></i> Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
