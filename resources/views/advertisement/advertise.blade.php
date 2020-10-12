@@ -8,7 +8,7 @@
         @include('inc.messages')
         <div class="ui basic padded segment">
             <div class="ui secondary menu">
-                <a href="/dashboard/admin" class="item" style="color: blue;font-weight:bolder"><i class="chart bar outline icon"></i> View page statistics</a>
+                
                 <div class="right menu">
                     <a class="ui blue button" href="{{route('advertisements.create')}}"><i class="plus icon"></i> New Campaign</a>
                 </div>
@@ -36,17 +36,7 @@
                                 <td>{{$advertisement->created_at}}</td>
                                 <td>{{$advertisement->expiry_date}}</td>
                                 <td>
-                                    <div class="ui blue buttons">
-                                        <a class="ui view button" href="">View</a>
-                                        <div class="ui floating tasks dropdown icon button">
-                                            <i class="dropdown icon"></i>
-                                            <div class="menu">
-                                                <a class="item edit" href=""><i class="edit outline icon"></i> Edit</a>
-                                                <a class="item "><i class="pause icon"></i> Suspend</a>
-                                                <a class="item deny"><i class="delete icon"></i> Remove</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a class="ui button" href="advertisements/{{$advertisement->id}}/edit"><i class="edit outline icon"></i> Edit</a>
                                 </td>
                             </tr>
                         @endforeach

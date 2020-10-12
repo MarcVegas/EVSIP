@@ -28,15 +28,7 @@
                                 <td>{{$product['description']}}</td>
                                 <td>{{$product['usage_type']}}</td>
                                 <td>
-                                    <div class="ui blue buttons">
-                                        <a class="ui view button" href="">View</a>
-                                        <div class="ui floating tasks dropdown icon button">
-                                            <i class="dropdown icon"></i>
-                                            <div class="menu">
-                                                <a class="item edit" href=""><i class="edit outline icon"></i> Update</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a class="ui view button" href="/dashboard/siteadmin/subscription/show/plans/{{$product['id']}}"><i class="eye icon"></i> View</a>
                                 </td>
                             </tr>
                         @endforeach

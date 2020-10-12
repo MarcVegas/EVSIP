@@ -52,7 +52,7 @@ class AdvertisementController extends Controller
             'discount' => 'integer|nullable',
             'link' => 'nullable',
             'file' => 'nullable',
-            'background' => 'string|nullable',
+            'custombg' => 'image|nullable',
         ]);
 
         //handle file upload
@@ -63,6 +63,8 @@ class AdvertisementController extends Controller
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             $path = $request->file('file')->storeAs('public/documents', $fileNameToStore);
         }
+
+        $bg = array('adbg1.png','adbg2.png','adbg3.png','adbg4.png');
 
         $user_id = auth()->user()->user_id;
         $expiry = Carbon::now()->addMonth();
@@ -79,8 +81,10 @@ class AdvertisementController extends Controller
         if ($request->has('file') ) {
             $advertisement->file = $fileNameToStore;
         }
-        if ($request->has('background') ) {
-            $advertisement->background = $request->input('background');
+        if ($request->has('custombg') ) {
+            $advertisement->background = $request->input('custombg');
+        }else{
+            $advertisement->background = $bg[array_rand($bg)];
         }
         $advertisement->status = 'active';
         $advertisement->user_id = $user_id;
@@ -109,7 +113,13 @@ class AdvertisementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user_id = auth()->user()->user_id;
+
+        $courses = Course::where('school_id', $user_id)->get();
+        $advertisement = Advertisement::where('id', $id)->first();
+
+        return view('advertisement.edit')->with('advertisement', $advertisement)
+        ->with('courses', $courses);
     }
 
     /**
@@ -121,7 +131,42 @@ class AdvertisementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'discount' => 'integer|nullable',
+            'link' => 'nullable',
+            'file' => 'nullable',
+            'custombg' => 'image|nullable',
+        ]);
+
+        //handle file upload
+        if ($request->hasFile('file')) {
+            $filenameWithExt = $request->file('file')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('file')->storeAs('public/documents', $fileNameToStore);
+        }
+
+        $advertisement = Advertisement::where('id', $id)->first();
+        $advertisement->title = $request->input('title');
+        $advertisement->body = $request->input('body');
+        if ($request->has('discount') ) {
+            $advertisement->discount = $request->input('discount');
+        }
+        if ($request->has('link') ) {
+            $advertisement->link = $request->input('link');
+        }
+        if ($request->has('file') ) {
+            $advertisement->file = $fileNameToStore;
+        }
+        if ($request->has('custombg') ) {
+            $advertisement->background = $request->input('custombg');
+        }
+        $advertisement->save();
+
+        return redirect()->route('advertisements.index')->with('success', 'Your ad is now active');
     }
 
     /**
@@ -132,7 +177,10 @@ class AdvertisementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $advertisement = Advertisement::where('id', $id)->first();
+        $advertisement->delete();
+
+        return redirect()->route('advertisements.index')->with('success', 'Your ad has been removed');
     }
 
     public function allAds(){

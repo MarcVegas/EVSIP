@@ -8,25 +8,31 @@
         @include('inc.messages')
         <div class="ui basic segment">
             <div class="ui secondary menu">
+                <div class="item">
+                    <form action="{!! action('AdvertisementController@destroy', $advertisement->id) !!}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="ui inverted red button" type="submit"><i class="trash icon"></i> Delete</button>
+                    </form>
+                </div>
                 <div class="right menu">
                     <div class="item">
                         <button type="submit" form="ad-form" class="ui button"><i class="newspaper outline green icon"></i> Publish</button>
                     </div>
                 </div>
             </div>
-            <form class="ui form" action="{{route('advertisements.store')}}" name="ad-form" id="ad-form" method="POST" enctype="multipart/form-data">
+            <form class="ui form" action="{!! action('AdvertisementController@update', $advertisement->id) !!}" name="ad-form" id="ad-form" method="POST" enctype="multipart/form-data">
                 @csrf
             <div class="ui stackable grid">
                 <div class="eleven wide column">
-                        <div class="field">
-                            <label>Title</label>
-                            <input type="text" name="title" id="title" required autofocus>
-                        </div>
-                        <div class="field">
-                            <label>Body</label>
-                            <textarea name="body" id="ckeditor-textarea"></textarea>
-                        </div>
-                        <input type="hidden" name="_method" value="POST">
+                    <div class="field">
+                        <label>Title</label>
+                        <input type="text" name="title" id="title" value="{{$advertisement->title}}" required autofocus>
+                    </div>
+                    <div class="field">
+                        <label>Body</label>
+                        <textarea name="body" id="ckeditor-textarea">{!! $advertisement->body !!}</textarea>
+                    </div>
+                    <input type="hidden" name="_method" value="POST">
                 </div>
                 <div class="five wide column">
                     <br>
@@ -35,7 +41,7 @@
                         <hr>
                         <div class="field">
                             <label><i class="money bill alternate green icon"></i> Display percent discount (optional)</label>
-                            <input type="number" name="discount" id="discount" min="0" max="100">
+                            <input type="number" name="discount" id="discount" value="{{$advertisement->discount}}" min="0" max="100">
                         </div>
                         <div class="field">
                             <label><i class="linkify blue icon"></i> Link to course or school (optional)</label>
@@ -44,7 +50,7 @@
                                 <option value="{{Auth::user()->user_id}}">{{ Auth::user()->username }}</option>
                                 @if (count($courses) > 0)
                                     @foreach ($courses as $course)
-                                        <option value="{{$course->course_id}}">{{$course->course_name}}</option>
+                                        <option {{($course->course_id == $advertisement->link) ? 'selected' : ''}} value="{{$course->course_id}}">{{$course->course_name}}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -72,6 +78,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="_method" value="PUT">
             </form>
             <p>Your ad will run from <strong>{{date('d M y, h:i a', strtotime(Carbon\Carbon::now()))}}</strong> to <strong>{{date('d M y, h:i a', strtotime(Carbon\Carbon::now()->addMonth()))}}</strong></p>
         </div>

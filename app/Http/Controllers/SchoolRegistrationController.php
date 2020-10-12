@@ -13,7 +13,7 @@ use App\User;
 class SchoolRegistrationController extends Controller
 {
     public function index(){
-        $registrants = School::where('status','=','inactive')->paginate(5);
+        $registrants = School::where('status','=','inactive')->get();
         
         return view('/dashboard/siteadmin/registrations')->with('registrants', $registrants);
     }

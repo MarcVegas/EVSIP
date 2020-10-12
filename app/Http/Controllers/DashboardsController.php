@@ -17,8 +17,10 @@ class DashboardsController extends Controller
         $schoolCount = School::select('school_name,school_id')->count();
         $registerCount = Registration::select('username,user_id')->count();
 
+        $schools = School::where('status', 'active')->latest()->limit(5)->get();
+
         return view('dashboard/siteadmin/overview')->with('school', $schoolCount)
-        ->with('registered', $registerCount);
+        ->with('registered', $registerCount)->with('schools', $schools);
     }
 
     //School admin pages

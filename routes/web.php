@@ -87,6 +87,11 @@ Route::get('/dashboard/siteadmin/review/{id}', 'SchoolRegistrationController@sho
 Route::get('/dashboard/siteadmin/approve/{id}', 'SchoolRegistrationController@approve');
 Route::get('/dashboard/siteadmin/deny/{id}', 'SchoolRegistrationController@deny');
 
+//Siteadmin all users
+Route::get('/dashboard/siteadmin/usermgmt', 'UserMgmtController@allUsers');
+Route::get('/dashboard/siteadmin/show/school/{id}', 'UserMgmtController@showSchool');
+Route::get('/dashboard/siteadmin/show/student/{id}', 'UserMgmtController@showStudent');
+
 //Login and registration controllers
 Route::get('/register/admin', 'AdminAuthController@register')->name('admin.register');
 Route::post('/register/admin', 'RegisterAdminController@register')->name('registeradmin');
@@ -111,7 +116,10 @@ Route::resource('/galleries', 'GalleryController');
 //Paypal Controller
 Route::get('/dashboard/siteadmin/subscription/list/products', 'PayPalController@listProduct')->name('list.product');
 Route::get('/dashboard/siteadmin/subscription/list/plans', 'PayPalController@listPlan')->name('list.plan');
+Route::get('/dashboard/siteadmin/subscription/show/plans/{id}', 'PayPalController@showPlan');
 Route::get('/dashboard/siteadmin/subscription/lists/subscriptions', 'PayPalController@listSubscription')->name('list.subscription');
+Route::get('/dashboard/siteadmin/subscription/cancel', 'PayPalController@cancelSubscription');
+Route::get('/dashboard/siteadmin/subscription/activate', 'PayPalController@activateSubscription');
 
 //FAQ
 Route::get('/faq', function () { return view('faq');});

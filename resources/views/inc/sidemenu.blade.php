@@ -23,6 +23,12 @@
                     Registration
                 </div>
             </a>
+            <a class="side item" href="/dashboard/siteadmin/usermgmt">
+                <div class="ui inline">
+                    <i class="address book icon large"></i>
+                    User Management
+                </div>
+            </a>
             <a class="side item" href="">
                 <div class="ui inline">
                     <i class="audio description icon large"></i>
