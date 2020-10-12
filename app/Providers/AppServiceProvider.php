@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $affiliation = collect(['Sectarian','Non-sectarian']);
         $exam = collect(['Required','Not required']);
         $gender = collect(['male','female']);
-        $course_categ = collect(['Bachelor','Master','Doctorate','High School','Vocational']);
+        $course_categ = collect(['Bachelor','Master','Doctorate','Senior High School','Vocational']);
         $duration = collect(['5 Years','4 Years','2 Years','6 Months','3 Months','6 Weeks','3 Weeks']);
         $majors = collect(['English','Mathematics','Filipino','Business Administration','Finance Management']);
         $enrollment = collect(['ongoing','closed']);

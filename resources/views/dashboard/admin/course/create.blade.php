@@ -19,7 +19,7 @@
 
                             <div class="fields">
                                 <div class="field">
-                                    <label>Course ID</label>
+                                    <label>Course/Strand ID</label>
                                     <input type="text" name="course_id" id="course_id">
                                 </div>
                                 <div class="field">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="fields">
                                 <div class="field">
-                                    <label>Course Name</label>
+                                    <label>Course/Strand Name</label>
                                     <input type="text" name="course_name" id="course_name">
                                 </div>
                                 <div class="field">

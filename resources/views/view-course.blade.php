@@ -18,7 +18,7 @@
             <div class="ten wide column">
                 <div class="ui basic tab active segment" data-tab="first" style="margin-left:5em;color:white;">
                     <h2>{{$preview->course_name}}</h2>
-                    <p><i class="stopwatch orange icon"></i> {{$preview->duration}} | <i>Majors: none</i></p>
+                    <p><i class="stopwatch orange icon"></i> {{$preview->duration}} | <i>Majors: {{$preview->majors ?? 'none'}}</i></p>
                     <p class="description">{{$preview->desc}}</p>
                     <h4>Details</h4>
                     <div class="ui four column grid">
@@ -71,44 +71,129 @@
                         </div>
                     @endif
                 </div>
-                {{-- <div class="ui basic tab segment" data-tab="fourth" style="margin-left:5em;color:white;">
-                    <h4><i class="user md orange icon"></i> Career oppurtunities for this course</h4>
-                    <small>Mouse over an item to learn more about a particular career path</small><br><br>
-                    <div class="ui relaxed grid">
-                        <div class="doubling three column row">
-                            <div class="column">
-                                <img class="ui avatar left floated image" src="/storage/avatars/maleuser2.jpg">
-                                <a href="#" id="career" style="font-weight:bolder;" data-title="Web Developer" data-content="Web developers create web-based systems used by many users on the internet" data-variation="tiny">Web Developer</a>
-                            </div>
-                            <div class="column">
-                                <img class="ui avatar left floated image" src="/storage/avatars/maleuser.png">
-                                <a href="#" style="font-weight:bolder;">IT Consultant</a>
-                            </div>
-                            <div class="column">
-                                <img class="ui avatar left floated image" src="/storage/avatars/maleuser2.jpg">
-                                <a href="#" style="font-weight:bolder;">Fullstack Developer</a>
-                            </div>
-                            <div class="column">
-                                <img class="ui avatar left floated image" src="/storage/avatars/maleuser.png">
-                                <a href="#" style="font-weight:bolder;">Network Administrator</a>
-                            </div>
-                            <div class="column">
-                                <img class="ui avatar left floated image" src="/storage/avatars/maleuser2.jpg">
-                                <a href="#" style="font-weight:bolder;">Software Engineer</a>
-                            </div>
-                            <div class="column">
-                                <img class="ui avatar left floated image" src="/storage/avatars/maleuser2.jpg">
-                                <a href="#" style="font-weight:bolder;">IT Instructor</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
     <div class="two wide column"></div>
 </div>
+@if (Auth::user()->role != 'admin')
+<button class="ui blue circular icon chatapp big button"><i class="envelope outline icon large"></i></button>
+<div class="ui custom popup transition hidden">
+    <div class="ui segments">
+        <div class="ui inverted blue segment">
+            <h3 class="ui header">
+                <img src="/storage/avatars/{{$school->avatar}}">
+                <div class="content">
+                    Hello there
+                    <div class="sub header" style="color:white">We usually respond in a few hours</div>
+                </div>
+            </h3>
+        </div>
+        <div class="ui segment">
+            <div id="chat-feed">
+                <div class="ui basic segment" id="messages">
+                    <i class="comments outline teal big icon"></i>
+                    <br>
+                    Get in touch by sending us a message
+                </div>
+            </div>
+            <div class="ui action input">
+                <input type="text" placeholder="Type your message" class="message-body" name="body" id="body">
+                <button class="ui blue right send button">
+                  <i class="paper plane icon"></i>
+                  Send
+                </button>
+              </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
+
+@push('ajax')
+    <script>
+        $(document).ready(function () {
+            var message;
+            var receiver_id = "{{$preview->department}}";
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var resizePopup = function(){$('.ui.popup').css('max-height', $(window).height());};
+
+            $(window).resize(function(e){
+                resizePopup();
+            });
+
+            Pusher.logToConsole = true;
+
+            var pusher = new Pusher('12c4db1b0696801100e9', {
+            cluster: 'ap1',
+            forceTLS: true
+            });
+
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                fetchMessages();
+            });
+
+            $('.chatapp.button').popup({
+                popup : $('.custom.popup'),
+                on    : 'click',
+                lastResort: 'bottom right',
+                onShow: function(){
+                    resizePopup();
+                },
+            });
+
+            function fetchMessages() {
+                $.ajax({
+                    type: "GET",
+                    url: '/messages/' + receiver_id,
+                    data: "",
+                    cache: false,
+                    success: function (data) {
+                        $('#messages').html(data);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+
+            fetchMessages();
+
+            $(document).on('click','.send.button', function (e){
+                var message = $('.message-body').val();
+
+                if (message != '' && receiver_id != '') {
+                    $('.message-body').val("");
+
+                    var datastr = "receiver_id=" + receiver_id + "&message=" + message;
+                    $.ajax({
+                    type: "POST",
+                    url: '/messages',
+                    data: datastr,
+                    cache: false,
+                    success: function (data) {
+                        fetchMessages();
+                    },
+                    error: function(jqXHR, status, err) {
+                        console.log("some shit happened");
+                    },
+                    complete: function () {
+                        console.log("huh...that actually worked");
+                    }
+                });
+                }
+            });
+        });
+    </script>
+@endpush
+
 @section('js')
     <script>
         $(document).ready(function (){

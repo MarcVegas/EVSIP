@@ -29,7 +29,7 @@
                     User Management
                 </div>
             </a>
-            <a class="side item" href="">
+            <a class="side item" href="{{route('advertisements.all')}}">
                 <div class="ui inline">
                     <i class="audio description icon large"></i>
                     Ad Management

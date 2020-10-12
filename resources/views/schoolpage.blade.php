@@ -241,27 +241,6 @@
                 });
                 }
             });
-
-            /* $('.send.button').click(function (e) {
-                message = $('.message-body').val();
-
-                if (receiver_id != '' && message != '') {
-                    var datastr = "receiver_id=" + receiver_id + "&message=" + message;
-                    $.ajax({
-                        type: "POST",
-                        url: '{{route("messages.store")}}',
-                        data: datastr,
-                        cache: false,
-                        success: function (data) {
-                            fetchMessages();
-                            $('#message-body').val("");
-                        },
-                        error: function(jqXHR, status, err) {
-                            console.log(err);
-                        }
-                    });
-                }
-            }); */
         });
     </script>
 @endpush

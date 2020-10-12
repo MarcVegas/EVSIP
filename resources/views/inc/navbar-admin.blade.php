@@ -2,6 +2,8 @@
     <div class="right menu">
         @if (Auth::user()->role == 'admin' && \App\School::where('school_id', Auth::user()->user_id)->first()->membership == 'free')
             <button class="ui inverted orange premium button"><i class="chess queen icon"></i> Go Premium</button>
+        @elseif(Auth::user()->role == 'admin' && \App\School::where('school_id', Auth::user()->user_id)->first()->membership != 'free')
+            <button class="ui green circular paying button"><i class="chess king icon"></i> Premium</button>
         @endif
         <div class="item">
             <span>

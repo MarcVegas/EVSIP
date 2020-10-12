@@ -186,6 +186,6 @@ class AdvertisementController extends Controller
     public function allAds(){
         $advertisements = Advertisement::all();
         
-        return view('advertisement.advertise')->with('advertisements', $advertisements);
+        return view('dashboard.siteadmin.ads')->with('advertisements', $advertisements);
     }
 }

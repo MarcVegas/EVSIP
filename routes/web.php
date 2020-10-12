@@ -105,6 +105,7 @@ Route::post('/pagemanagement/announcement/update/{id}', 'AdminPageController@upd
 //Advertisement controller
 Route::resource('/advertisements', 'AdvertisementController');
 Route::post('/advertisements/draft', 'AdvertisementController@draft')->name('advertisements.draft');
+Route::get('/advertisements/list/all', 'AdvertisementController@allAds')->name('advertisements.all');
 
 //School Page controller
 Route::post('/page/mandv', 'SchoolPagesController@store')->name('schoolpage.store');
@@ -146,6 +147,12 @@ Route::get('/filter/course', 'CoursesController@filterSearch');
 //Email Controller
 Route::get('/email/registered', function ($id) {
     
+});
+
+Route::get('/cache/destroy', function () {
+    cache()->forget('category');
+
+    return redirect('/home');
 });
 
 Auth::routes();
