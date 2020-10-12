@@ -120,7 +120,7 @@ class PagesController extends Controller
         }
 
         $courses = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
-        ->select('courses.*', 'users.*')->paginate(8);
+        ->select('courses.*', 'users.*')->paginate(9);
 
         $ads = Advertisement::leftJoin('schools', 'advertisements.user_id','=','schools.school_id')
         ->select('advertisements.*','schools.*')->get();

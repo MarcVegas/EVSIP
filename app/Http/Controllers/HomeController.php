@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function index()
     {
         $courses = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
-        ->select('courses.*', 'users.*')->paginate(8);
+        ->select('courses.*', 'users.*')->inRandomOrder()->limit(8)->get();
 
         $ads = Advertisement::leftJoin('schools', 'advertisements.user_id','=','schools.school_id')
         ->select('advertisements.*','schools.*')->get();

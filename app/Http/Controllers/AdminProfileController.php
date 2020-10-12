@@ -81,6 +81,6 @@ class AdminProfileController extends Controller
         $location->school_id = $user_id;
         $location->save();
 
-        return redirect()->view('dashboard/admin/profile')->with('success', 'Location successfuly updated');
+        return redirect('/dashboard/admin/profile'.$user_id)->with('success', 'Location successfuly updated');
     }
 }

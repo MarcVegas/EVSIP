@@ -91,7 +91,9 @@
                     </div>
                 @endforeach
             </div>
-            {{$courses->links()}}
+            <div class="ui center aligned basic segment">
+                {{$courses->links('vendor.pagination.semantic-ui')}}
+            </div>
         @else 
             <div class="ui basic center aligned segment">
                 <br><br>

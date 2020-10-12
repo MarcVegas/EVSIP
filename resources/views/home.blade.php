@@ -55,7 +55,6 @@
                         </div>
                     @endforeach
                 </div>
-                {{$courses->links()}}
             @else 
                 <div class="ui basic center aligned segment">
                     <br><br>
