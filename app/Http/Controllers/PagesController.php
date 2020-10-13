@@ -109,7 +109,7 @@ class PagesController extends Controller
         if ($request->has('search')) {
             $searchterm = $request->get('search');
 
-            $columns = ['courses.course_name','courses.duration','courses.abbreviation','schools.school_name'];
+            $columns = ['courses.course_name','courses.duration','courses.abbreviation','schools.school_name','users.username'];
 
             $query = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
             ->leftJoin('schools', 'schools.school_id', '=', 'users.user_id')
@@ -131,6 +131,33 @@ class PagesController extends Controller
         return view('allcourses')->with('courses', $courses)->with('ads', $ads)->with('searched', $searched);
     }
 
+    public function allschools(Request $request){
+        $searched = null;
+        if ($request->has('search')) {
+            $searchterm = $request->get('search');
+
+            $columns = ['schools.school_name','users.username','locations.place_loc'];
+
+            $query = School::leftJoin('users', 'schools.school_id', '=', 'users.user_id')
+            ->leftJoin('locations', 'schools.school_id', '=', 'locations.school_id')
+            ->select('users.*', 'schools.*', 'locations.*');
+
+            foreach ($columns as $column) {
+                $query->orWhere($column,'LIKE','%'.$searchterm.'%');
+            }
+
+            $searched = $query->get();
+        }
+
+        $schools = School::leftJoin('users', 'schools.school_id', '=', 'users.user_id')
+        ->select('users.*', 'schools.*')->inRandomOrder()->paginate(12);
+
+        $ads = Advertisement::leftJoin('schools', 'advertisements.user_id','=','schools.school_id')
+        ->select('advertisements.*','schools.*')->get();
+
+        return view('allschools')->with('schools', $schools)->with('ads', $ads)->with('searched', $searched);
+    }
+
     public function registered(){
 
         return view('reg-student-success');
@@ -140,5 +167,24 @@ class PagesController extends Controller
         $visit = new Visit;
         $visit->school_id = $id;
         $visit->save();
+    }
+
+    public function filterSearch(Request $request){
+        if ($request->has('affiliation')) {
+            $affiliation = $request->get('affiliation');
+        }
+        if ($request->has('category')) {
+            $category = $request->get('category');
+        }
+        if ($request->has('type')) {
+            $type = $request->get('type');
+        }
+
+        $schools = School::leftJoin('users', 'schools.school_id', '=', 'users.user_id')
+        ->select('users.*', 'schools.*')->where('schools.affiliation', $affiliation)
+        ->where('schools.category', $category)
+        ->where('schools.type', $type)->paginate(9);
+
+        return view('filterschool')->with('schools', $schools);
     }
 }

@@ -21,6 +21,7 @@ Route::get('/course/register/{id}', 'PagesController@registerPage');
 Route::post('/course/registration', 'PagesController@registerCourse')->name('pages.store');
 Route::get('/course/success', 'PagesController@registered')->name('pages.prompt');
 Route::get('/all', 'PagesController@allcourses')->name('pages.all');
+Route::get('/catalogue', 'PagesController@allschools')->name('pages.allschools');
 
 //Home controller
 Route::get('/home/preview/{id}', 'HomeController@show')->name('course.preview');
@@ -80,6 +81,7 @@ Route::resource('/admissions', 'AdmissionController');
 
 //Matcher controller
 Route::get('/matcher', 'MatcherController@index');
+Route::get('/matcher/getmatch/{id}', 'MatcherController@match');
 
 //Registration controller
 Route::get('/dashboard/siteadmin/registrations', 'SchoolRegistrationController@index');
@@ -119,8 +121,9 @@ Route::get('/dashboard/siteadmin/subscription/list/products', 'PayPalController@
 Route::get('/dashboard/siteadmin/subscription/list/plans', 'PayPalController@listPlan')->name('list.plan');
 Route::get('/dashboard/siteadmin/subscription/show/plans/{id}', 'PayPalController@showPlan');
 Route::get('/dashboard/siteadmin/subscription/lists/subscriptions', 'PayPalController@listSubscription')->name('list.subscription');
-Route::get('/dashboard/siteadmin/subscription/cancel', 'PayPalController@cancelSubscription');
+Route::get('/dashboard/siteadmin/subscription/cancel/{id}', 'PayPalController@cancelSubscription');
 Route::get('/dashboard/siteadmin/subscription/activate', 'PayPalController@activateSubscription');
+Route::get('/dashboard/admin/subscription/setting', 'PayPalController@manageSub');
 
 //FAQ
 Route::get('/faq', function () { return view('faq');});
@@ -143,6 +146,9 @@ Route::get('/subscribe/membership/{id}', 'PricingController@updateMembership');
 
 //Filter Course Controller
 Route::get('/filter/course', 'CoursesController@filterSearch');
+
+//Filter School Controller
+Route::get('/filter/school', 'PagesController@filterSearch');
 
 //Email Controller
 Route::get('/email/registered', function ($id) {

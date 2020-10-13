@@ -87,7 +87,7 @@
                 </div>
             </a>
             @if (\App\School::where('school_id', Auth::user()->user_id)->first()->membership != 'free')
-            <a class="side item" href="">
+            <a class="side item" href="/dashboard/admin/subscription/setting">
                 <div class="ui inline">
                     <i class="money bill alternate icon large"></i>
                     My Subscription

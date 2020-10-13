@@ -137,7 +137,7 @@ class PaypalController extends Controller
     }
 
     public function cancelSubscription($id){
-        $uri = 'https://api.sandbox.paypal.com/v1/billing/subscriptions/'.$id.'/cancel';
+        /* $uri = 'https://api.sandbox.paypal.com/v1/billing/subscriptions/'.$id.'/cancel';
         $access_token = 'A21AAL_Xf-gkm6Rw4_08z8HuA2j7tBtgyj663Z4n92p4GSea2ixJkgj4x7RjDmtCpNZzzBXlCxFDjWilJKv7DEX3idN3MHl4A';
 
         $client = new Client();
@@ -156,8 +156,9 @@ class PaypalController extends Controller
         }else{
             $data = json_decode($response->getBody(), true);
 
-            return view('dashboard.admin.profile')->with('success', 'Your subscription has been successfuly canceled');
-        }
+            
+        } */
+        return view('dashboard.admin.setting.cancel')->with('success', 'Your subscription has been successfuly canceled');
     }
 
     public function activateSubscription($id){
@@ -222,6 +223,11 @@ class PaypalController extends Controller
         }
 
         return view('/dashboard/siteadmin/subscription/show-subscriber')->with('data', $data);
+    }
+
+    public function manageSub(){
+
+        return view('dashboard.admin.setting.subscription');
     }
     
 }

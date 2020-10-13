@@ -5,7 +5,7 @@
     </a>
     <a class="item" href="/home">Browse</a>
     <a class="item" href="{{route('forum.index')}}">Community</a>
-    <a class="item">Catalogue</a>
+    <a class="item" href="/catalogue">Catalogue</a>
     <a class="item" href="/matcher">Matcher</a>
     <div class="right item">
         @guest

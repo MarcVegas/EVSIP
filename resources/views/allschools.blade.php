@@ -13,22 +13,23 @@
 </div>
 <div class="ui text container">
     @include('inc.messages')
-    <form class="ui inverted form" action="/all#search-results" action="GET">
+    <form class="ui inverted form" action="/catalogue#search-results" action="GET">
         <div class="ui action large left icon fluid input">
             <i class="search icon"></i>
             <input type="text" name="search" placeholder="Search for..." style="width:28em">
             <button class="ui blue button" type="submit">Search Now</button>
+            <a class="ui icon button" href="/catalogue#search-results"><i class="undo alternate icon"></i></a>
         </div><br>
     </form>
     <div id="search-results"></div>
     <div class="ui inverted form">
         <div class="three fields">
             <div class="field">
-                <label>Category</label>
-                <select class="ui search course_categ dropdown" name="course_categ" id="">
+                <label>Affiliation</label>
+                <select class="ui search affiliation dropdown" name="affiliation" id="">
                     <option value="">Select one</option>
-                    @foreach (Cache::get('course_categ') as $course_categ)
-                        <option value="{{$course_categ}}">{{$course_categ}}</option>
+                    @foreach (Cache::get('affiliation') as $affiliation)
+                        <option value="{{$affiliation}}">{{$affiliation}}</option>
                     @endforeach
                 </select>
             </div>
@@ -52,19 +53,20 @@
             </div>
         </div>
     </div>
+
     @if ($searched ?? '')
         <h5 class="sectiontitle"><i class="search icon"></i> Search results</h5>
         @if (count($searched) > 0)
             <div class="ui stackable three cards">
                 @foreach ($searched as $search)
                     <div class="ui raised link view card" id="getCourse">
-                        <input type="hidden" name="course_id" id="course_id" value="{{$search->course_id}}">
-                        <a href="/home/preview/{{$search->course_id}}">
-                            <div class="ui green label floatlabel">{{$search->duration}}</div>
+                        <input type="hidden" name="course_id" id="course_id" value="{{$search->user_id}}">
+                        <a href="/page/{{$search->user_id}}">
+                            <div class="ui teal label floatlabel">{{$search->type}}</div>
                             <br><br><br>
                             <img class="ui small circular centered image" src="/storage/avatars/{{$search->avatar}}" alt="logo">
                         </a>
-                        <p class="floatdesc">{{$search->course_name}}</p>
+                        <p class="floatdesc">{{$search->school_name}}</p>
                     </div>
                 @endforeach
             </div>
@@ -76,24 +78,24 @@
             </div>
         @endif
     @endif
-    <h5 class="sectiontitle"><i class="book icon"></i> All Courses</h5>
-    <div id="courses-card">
-        @if ($courses ?? '')
+    <h5 class="sectiontitle"><i class="book icon"></i> All Schools</h5>
+    <div id="schools-card">
+        @if ($schools ?? '')
             <div class="ui stackable three cards">
-                @foreach ($courses as $course)
+                @foreach ($schools as $school)
                     <div class="ui raised link view card" id="getCourse">
-                        <input type="hidden" name="course_id" id="course_id" value="{{$course->course_id}}">
-                        <a href="/home/preview/{{$course->course_id}}">
-                            <div class="ui green label floatlabel">{{$course->duration}}</div>
+                        <input type="hidden" name="course_id" id="course_id" value="{{$school->user_id}}">
+                        <a href="/page/{{$school->user_id}}">
+                            <div class="ui teal label floatlabel">{{$school->type}}</div>
                             <br><br><br>
-                            <img class="ui small circular centered image" src="/storage/avatars/{{$course->avatar}}" alt="logo">
+                            <img class="ui small circular centered image" src="/storage/avatars/{{$school->avatar}}" alt="logo">
                         </a>
-                        <p class="floatdesc">{{$course->course_name}}</p>
+                        <p class="floatdesc">{{$school->school_name}}</p>
                     </div>
                 @endforeach
             </div>
             <div class="ui center aligned basic segment">
-                {{$courses->links('vendor.pagination.semantic-ui')}}
+                {{$schools->links('vendor.pagination.semantic-ui')}}
             </div>
         @else 
             <div class="ui basic center aligned segment">
@@ -127,7 +129,7 @@
 
 @push('ajax')
     <script>
-        var course_categ;
+        var affiliation;
         var category;
         var type;
         var datastr;
@@ -135,11 +137,11 @@
         function filterSearch(datastr) {
             $.ajax({
                 type: "GET",
-                url: '/filter/course',
+                url: '/filter/school',
                 data: datastr,
                 cache: false,
                 success: function (data) {
-                    $('#courses-card').html(data);
+                    $('#schools-card').html(data);
                     console.log(data);
                 },
                 error: function(data) {
@@ -148,10 +150,10 @@
             });
         }
 
-        $('.course_categ.dropdown').dropdown({
+        $('.affiliation.dropdown').dropdown({
             onChange: function(value, text, $selectedItem){
-                course_categ = value;
-                datastr = 'course_categ=' + course_categ + '&';
+                affiliation = value;
+                datastr = 'affiliation=' + affiliation + '&';
                 if (category != null && type != null) {
                     filterSearch(datastr);
                 }
@@ -162,7 +164,7 @@
             onChange: function(value, text, $selectedItem){
                 category = value;
                 datastr = datastr + 'category=' + category + '&';
-                if (course_categ != null && type != null) {
+                if (affiliation != null && type != null) {
                     filterSearch(datastr);
                 }
             }
@@ -172,7 +174,7 @@
             onChange: function(value, text, $selectedItem){
                 type = value;
                 datastr = datastr + 'type=' + type + '&';
-                if (category != null && course_categ != null) {
+                if (category != null && affiliation != null) {
                     filterSearch(datastr);
                 }
             }
