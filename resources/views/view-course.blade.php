@@ -18,7 +18,7 @@
             <div class="ten wide column">
                 <div class="ui basic tab active segment" data-tab="first" style="margin-left:5em;color:white;">
                     <h2>{{$preview->course_name}}</h2>
-                    <p><i class="stopwatch orange icon"></i> {{$preview->duration}} | <i>Majors: {{$preview->majors ?? 'none'}}</i></p>
+                    <p><i class="stopwatch orange icon"></i> {{$preview->duration}} | <i>Majors: {{$preview->majors ?? 'none'}}</i> | <label class="ui teal tiny label">Enrollment Period</label> {{date('d M Y', strtotime($eperiodCheck->enrollment_start))}} to {{date('d M Y', strtotime($eperiodCheck->enrollment_end))}}</p>
                     <p class="description">{{$preview->desc}}</p>
                     <h4>Details</h4>
                     <div class="ui four column grid">
@@ -26,16 +26,22 @@
                             <p>Enrollment <br> <strong>{{$preview->enrollment}}</strong></p>
                         </div>
                         <div class="column">
-                            <p>Tuition <br> <strong>{{$preview->tuition}}</strong></p>
+                            <p>Tuition <br> <strong>{{$preview->tuition}}*</strong></p>
                         </div>
                         <div class="column">
                             <p>Entrance Exam <br> <strong>{{$preview->exam}}</strong></p>
                         </div>
                         <div class="column"></div>
-                    </div><br><br>
+                    </div><br>
+                    <small>*Tuition fee displayed is only for freshman year. Amount may increase as year level progresses</small>
+                    <br><br>
                     @if (Auth::user()->role == 'student')
                         @if (is_null($registerCheck))
-                            <a href="/course/register/{{$preview->course_id}}" class="ui violet button"><i class="pencil alternate icon"></i> Register</a>
+                            @if ($preview->enrollemnt == 'closed')
+                                <a href="" class="ui violet disabled button">Registration Closed</a>
+                            @else
+                                <a href="/course/register/{{$preview->course_id}}" class="ui violet button"><i class="pencil alternate icon"></i> Register</a>
+                            @endif
                         @else
                             <a href="#" class="ui violet disabled button"><i class="check icon"></i> Registered</a>
                         @endif

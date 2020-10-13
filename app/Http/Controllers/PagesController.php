@@ -13,6 +13,7 @@ use App\Page;
 use App\Announcement;
 use App\Advertisement;
 use App\Admission;
+use App\Visit;
 
 class PagesController extends Controller
 {
@@ -40,6 +41,8 @@ class PagesController extends Controller
         $school = School::leftJoin('users', 'schools.school_id', '=', 'users.user_id')
         ->select('schools.*', 'users.*')
         ->where('schools.school_id', $id)->first();
+
+        $this->visit($id);
 
         return view('schoolpage')->with('courses', $courses)
         ->with('school', $school)
@@ -131,5 +134,11 @@ class PagesController extends Controller
     public function registered(){
 
         return view('reg-student-success');
+    }
+
+    public function visit($id){
+        $visit = new Visit;
+        $visit->school_id = $id;
+        $visit->save();
     }
 }

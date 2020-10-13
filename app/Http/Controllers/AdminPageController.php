@@ -35,7 +35,7 @@ class AdminPageController extends Controller
             'body' => 'required',
             'user_id' => 'required|string',
             'role' => 'required|string',
-            'linked' => 'integer',
+            'linked' => 'integer|nullable',
         ]);
 
         

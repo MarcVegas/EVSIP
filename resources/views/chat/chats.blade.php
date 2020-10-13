@@ -81,7 +81,7 @@
                     <div class="ui grid">
                         <div class="row">
                             <div class="twelve wide column">
-                                <div class="ui fluid input">
+                                <div class="ui fluid input" id="message-text">
                                     <input type="text" placeholder="Type your message" class="message-body" name="body" id="body">
                                 </div>
                             </div>
@@ -195,7 +195,8 @@
                         data: datastr,
                         cache: false,
                         success: function (data) {
-                            
+                            $('#message-text').addClass('disabled');
+                            $('.send.button').addClass('disabled');
                         },
                         error: function(jqXHR, status, err) {
                             console.log("some shit happened");

@@ -36,7 +36,7 @@
         </div>
         <div class="three wide column">
         </div>
-    </div><br>
+    </div>
     <div class="row">
         <div class="three wide column"></div>
         <div class="ten wide column">
@@ -52,6 +52,35 @@
                                 <img class="ui small circular centered image" src="/storage/avatars/{{$course->avatar}}" alt="logo">
                             </a>
                             <p class="floatdesc">{{$course->course_name}}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @else 
+                <div class="ui basic center aligned segment">
+                    <br><br>
+                    <img src="/storage/interface/certificate.png" class="ui centered small image" alt="no courses">
+                    <h4>No courses to display yet</h4>
+                    <p>This could be a server problem. Try again later</p>
+                </div>
+            @endif
+        </div>
+        <div class="three wide column"></div>
+    </div><br>
+    <div class="row">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
+            <h5 class="sectiontitle"><i class="star icon"></i> FEATURED SENIOR HIGH TRACKS</h5>
+            @if (count($seniorhigh) > 0)
+                <div class="ui stackable four cards">
+                    @foreach ($seniorhigh as $senior)
+                        <div class="ui raised link view card" id="getCourse">
+                            <input type="hidden" name="course_id" id="course_id" value="{{$senior->course_id}}">
+                            <a href="/home/preview/{{$senior->course_id}}">
+                                <div class="ui green label floatlabel">{{$senior->duration}}</div>
+                                <br><br><br>
+                                <img class="ui small circular centered image" src="/storage/avatars/{{$senior->avatar}}" alt="logo">
+                            </a>
+                            <p class="floatdesc">{{$senior->course_name}} ({{$senior->abbreviation}})</p>
                         </div>
                     @endforeach
                 </div>

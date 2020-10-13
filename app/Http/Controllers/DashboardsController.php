@@ -9,6 +9,7 @@ use App\School;
 use App\Course;
 use App\Favorite;
 use App\Department;
+use App\Visit;
 
 class DashboardsController extends Controller
 {
@@ -32,8 +33,10 @@ class DashboardsController extends Controller
         ->where('registrations.school_id', $school)->paginate(5);
 
         $courses = Course::where('school_id', $school)->count();
+        $visits = Visit::where('school_id', $school)->count();
 
-        return view('dashboard/admin/overview')->with('registrations', $registrations)->with('courses', $courses);
+        return view('dashboard/admin/overview')->with('registrations', $registrations)
+        ->with('courses', $courses)->with('visits', $visits);
     }
     
     //School department pages

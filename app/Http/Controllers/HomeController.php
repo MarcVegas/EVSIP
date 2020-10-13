@@ -12,6 +12,7 @@ use App\Favorite;
 use App\Registration;
 use App\Location;
 use App\Advertisement;
+use App\Page;
 
 class HomeController extends Controller
 {
@@ -35,10 +36,13 @@ class HomeController extends Controller
         $courses = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
         ->select('courses.*', 'users.*')->inRandomOrder()->limit(8)->get();
 
+        $seniorhigh = Course::leftJoin('users', 'courses.school_id', '=', 'users.user_id')
+        ->select('courses.*', 'users.*')->where('courses.course_categ', 'Senior High School')->inRandomOrder()->limit(8)->get();
+
         $ads = Advertisement::leftJoin('schools', 'advertisements.user_id','=','schools.school_id')
         ->select('advertisements.*','schools.*')->get();
 
-        return view('home')->with('courses', $courses)->with('ads', $ads);
+        return view('home')->with('courses', $courses)->with('seniorhigh', $seniorhigh)->with('ads', $ads);
     }
 
     public function show($id)
@@ -55,12 +59,13 @@ class HomeController extends Controller
         $location = Location::where('school_id', $preview->school_id)->first();
         $registerCheck = Registration::where('course_id', $id)->where('user_id', $user)->first();
         $favoriteCheck = Favorite::where('course_id', $id)->where('user_id', $user)->first();
+        $eperiodCheck = Page::where('id', $preview->school_id)->first();
 
         return view('view-course')->with('preview', $preview)
         ->with('admissions', $admissions)
         ->with('scholarships', $scholarships)
         ->with('school', $school)->with('registerCheck', $registerCheck)
         ->with('favoriteCheck', $favoriteCheck)
-        ->with('location', $location);
+        ->with('location', $location)->with('eperiodCheck', $eperiodCheck);
     }
 }

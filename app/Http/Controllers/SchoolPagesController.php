@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Page;
+use App\Course;
 
 class SchoolPagesController extends Controller
 {
@@ -36,19 +38,23 @@ class SchoolPagesController extends Controller
             'enrollment_end' => 'required',
         ]);
 
-        $pagecheck = Page::where('id', $request->input('user_id'))->first();
+        $pagecheck = Page::where('id', $id)->first();
         $pagecheck->enrollment_start = $request->input('enrollment_start');
         $pagecheck->enrollment_end = $request->input('enrollment_end');
         $pagecheck->save();
-        /* if (is_null($pagecheck)) {
-            $page = new Page;
-            $page->enrollment_start = $request->input('enrollment_start');
-            $page->enrollment_end = $request->input('enrollment_end');
-            $page->save();
-        } else {
-            
-        } */
+        
+        $this->checkIfOngoing($id);
         
         return redirect()->route('adminpage.index')->with('success', 'Enrollment period successfuly set');
+    }
+
+    public function checkIfOngoing($id){
+        $check = Page::where('id', $id)->first();
+
+        if (Carbon::parse($check->enrollment_end)->lt(Carbon::now())) {
+            $course = Course::where('school_id', $id)->update(['enrollment', 'closed']);
+        }elseif (Carbon::parse($check->enrollment_end)->gt(Carbon::now())){
+            $course = Course::where('school_id', $id)->update(['enrollment', 'ongoing']);
+        }
     }
 }

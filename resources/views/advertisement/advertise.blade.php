@@ -6,6 +6,7 @@
     @include('inc.navbar-admin')
     <div class="pale" style="margin-top: 1em; height: 41em;">
         @include('inc.messages')
+        @if ($premiumCheck->membership == 'premium')
         <div class="ui basic padded segment">
             <div class="ui secondary menu">
                 
@@ -50,6 +51,14 @@
                 </div>
             @endif
         </div>
+        @else
+            <div class="ui basic center aligned padded segment">
+                <br><br>
+                <img src="/storage/interface/podium.png" class="ui centered small image" alt="no reports">
+                <h4>YOU DISCOVERED A PREMIUM FEATURE!</h4>
+                <p>Go premium and get access to ads, featured courses, and more</p>
+            </div>
+        @endif
     </div>
 </div>
 @include('modal.modal-premium')

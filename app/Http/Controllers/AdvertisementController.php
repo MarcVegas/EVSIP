@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Course;
 use App\Background;
+use App\School;
 
 class AdvertisementController extends Controller
 {
@@ -20,7 +21,10 @@ class AdvertisementController extends Controller
         $user_id = auth()->user()->user_id;
 
         $advertisements = Advertisement::where('user_id', $user_id)->get();
-        return view('advertisement.advertise')->with('advertisements', $advertisements);
+        $premiumCheck = School::where('school_id', $user_id)->first();
+
+        return view('advertisement.advertise')->with('advertisements', $advertisements)
+        ->with('premiumCheck', $premiumCheck);
     }
 
     /**

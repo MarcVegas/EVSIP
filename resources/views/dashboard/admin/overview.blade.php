@@ -11,6 +11,13 @@
                 <div class="three column row">
                     <div class="column">
                         <div class="ui raised segment">
+                            <img class="ui tiny left floated image" src="/storage/interface/graph.png" alt="">
+                            <h2>{{$visits}}</h2>
+                            <p>Page visits</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui raised segment">
                             <img class="ui tiny left floated image" src="/storage/interface/report.png" alt="">
                             <h2>{{$courses}}</h2>
                             <p>Courses</p>
