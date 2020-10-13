@@ -23,6 +23,7 @@
 <script>
     $('.register.modal').modal('attach events', '.register.button', 'show');
     $('.required.modal').modal('attach events', '.required.button', 'show');
+    $('.scrolling.modal').modal('attach events', '.terms', 'show');
 </script>
 </body>
 </html>

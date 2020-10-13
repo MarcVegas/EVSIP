@@ -1,29 +1,8 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'EVSIP') }}</title>
-    <!-- Fonts -->
-
-    <!-- Styles -->
-    <link href="{{ asset('css/semantic.min.css')}}" rel="stylesheet">
-    <link rel="icon" href="/storage/interface/favicon.png">
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-</head> 
-<body>
-<div class="ui basic inverted blue padded segment">
-    <a class="ui secondary button" href="/login"><i class="angle left icon"></i> Go back</a>
-</div>
-<div class="ui grid">
-    <div class="three wide column"></div>
-    <div class="ten wide column">
-        <div class="ui basic very padded segment">
-            <h1>EVSIP Terms and Conditions</h1>
+<div class="ui small scrolling modal">
+    <i class="close icon"></i>
+    <div class="header">EVSIP Terms and Conditions</div>
+    <div class="scrolling content">
+        <div class="ui basic segment">
         
         <h3>1. Introduction</h3>
         These Website Standard Terms And Conditions (these “Terms” or these “Website Standard Terms And Conditions”) contained herein on this webpage, shall govern your use of this website, including all pages within this website (collectively referred to herein below as this “Website”). These Terms apply in full force and effect to your use of this Website and by using this Website, you expressly accept all terms and conditions contained herein in full. You must not use this Website, if you have any objection to any of these Website Standard Terms And Conditions.
@@ -75,13 +54,4 @@
         These Terms will be governed by and construed in accordance with the laws of the State of [State], and you submit to the non-exclusive jurisdiction of the state and federal courts located in [State] for the resolution of any disputes.
         </div>
     </div>
-    <div class="three wide column"></div>
 </div>
-<script src="{{ asset('js/semantic.min.js') }}"></script>
-<script src="{{ asset('js/master-semantic.min.js') }}"></script>
-<script>
-    $('.register.modal').modal('attach events', '.register.button', 'show');
-</script>
-</body>
-</html>
-

@@ -131,7 +131,7 @@
                         <div class="field">
                             <div class="ui checkbox">
                             <input type="checkbox" tabindex="0" class="hidden">
-                            <label>I agree to the <a href="/termsandconditions" style="color: orange;">Terms and Conditions</a></label>
+                            <label>I agree to the <span href="" class="terms" style="color: orange;">Terms and Conditions</span></label>
                             </div>
                         </div><br>
                         <input type="hidden" name="role" id="role" value="admin">
@@ -144,5 +144,6 @@
         </div>
     </div>
 </div>
+@include('modal.modal-tandc')
 @include('modal.modal-required')
 @endsection

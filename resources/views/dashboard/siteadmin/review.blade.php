@@ -70,7 +70,11 @@
                             @if (count($documents) > 0)
                                 @foreach ($documents as $document)
                                     <a class="item" href="/storage/documents/{{$document->filename}}" target="_blank">
-                                        <img class="ui mini left floated image" src="/storage/documents/{{$document->filename}}">
+                                        @if ($document->ext == 'pdf')
+                                            <img class="ui mini left floated image" src="/storage/documents/pdf.png">
+                                        @else
+                                            <img class="ui mini left floated image" src="/storage/documents/{{$document->filename}}">
+                                        @endif
                                         <div class="content">
                                             <div class="header">{{$document->filename}}</div>
                                             Click to view

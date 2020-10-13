@@ -62,7 +62,7 @@ class RegisterAdminController extends Controller
             'affiliation' => ['required', 'string', 'max:255'],
             'exam' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'files.*' => ['mimes:jpg,jpeg,png,bmp','max:1999']
+            'files.*' => ['mimes:jpg,jpeg,png,bmp,pdf','max:1999']
         ]);
     }
 
@@ -104,6 +104,7 @@ class RegisterAdminController extends Controller
             $doc = new Document;
             $doc->type = 'verification';
             $doc->filename = $fileNameToStore;
+            $doc->ext = $extension;
             $doc->school_id = $data['school_id'];
             $doc->save();
         }

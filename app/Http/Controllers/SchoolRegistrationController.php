@@ -49,6 +49,6 @@ class SchoolRegistrationController extends Controller
 
         Mail::to($user->email)->send(new AppDenyMail($name, $reason));
 
-        return view('/dashboard/siteadmin/registrations')->with('success', $name.' application has been denied');
+        return redirect('/dashboard/siteadmin/registrations')->with('success', $name.' application has been denied');
     }
 }
