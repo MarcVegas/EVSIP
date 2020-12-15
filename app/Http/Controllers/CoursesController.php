@@ -133,7 +133,6 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'course_id' => 'required|unique:courses,id,'.$request->input('id'),
             'abbreviation' => 'required|string',
             'course_name' => 'required|string',
             'description' => 'string|nullable',
@@ -146,7 +145,6 @@ class CoursesController extends Controller
         ]);
 
         $course = Course::where('course_id','=', $id)->first();
-        $course->course_id = $request->input('course_id');
         $course->course_name = $request->input('course_name');
         if ($request->has('description')) {
             $course->description = $request->input('description');

@@ -68,7 +68,17 @@
     @stack('datatables')
     @stack('ckeditor')
     <script>
-        
+        $(document).ready(function () {
+            ClassicEditor
+            .create( document.querySelector( '#ckeditor-textarea' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+        });
+
         $('.premium.modal').modal('attach events', '.premium.button', 'show');
         $('.basic.modal').modal('attach events', '.approve.button', 'show');
         $('.period.modal').modal('attach events', '.enroll.button', 'show');

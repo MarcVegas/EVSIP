@@ -8,6 +8,7 @@
             <a class="active item" data-tab="first">Overview</a>
             <a class="item" data-tab="second">Location</a>
             <a class="item" data-tab="third">Requirements</a>
+            <a class="item" data-tab="fourth">Scholarships</a>
         </div>
         <div class="ui mobile reversed stackable grid">
             <div class="four wide column">
@@ -19,7 +20,7 @@
                 <div class="ui basic tab active segment" data-tab="first" style="margin-left:5em;color:white;">
                     <h2>{{$preview->course_name}}</h2>
                     <p><i class="stopwatch orange icon"></i> {{$preview->duration}} | <i>Majors: {{$preview->majors ?? 'none'}}</i> | <label class="ui teal tiny label">Enrollment Period</label> {{date('d M Y', strtotime($eperiodCheck->enrollment_start))}} to {{date('d M Y', strtotime($eperiodCheck->enrollment_end))}}</p>
-                    <p class="description">{{$preview->desc}}</p>
+                    <div class="description">{!! $preview->desc !!}</div>
                     <h4>Details</h4>
                     <div class="ui four column grid">
                         <div class="column">
@@ -56,7 +57,7 @@
                 <div class="ui basic tab segment" data-tab="second" style="margin-left:5em;color:white;">
                     @if ($location ?? '')
                         <h4><i class="map marker alternate orange icon"></i>{{$location->place_loc}}</h4>
-                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCbZMPoMaWaAnuSqpN3kMq8MBjIsYpqy4U&q=place_id:{{$location->place_id}}" frameborder="0" width="550" height="360" allowfullscreen></iframe>
+                        {{-- <iframe src="https://www.google.com/maps/embed/v1/place?key=&q=place_id:{{$location->place_id}}" frameborder="0" width="550" height="360" allowfullscreen></iframe> --}}
                     @else
                         <img class="ui big image" src="/storage/interface/maptemp.jpg" alt="">
                     @endif
@@ -72,6 +73,22 @@
                                 </div>
                                 <div class="content">
                                     <div class="transition hidden">{!! $admission->body !!}</div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                <div class="ui basic tab segment" data-tab="fourth" style="margin-left:5em;color:white;">
+                    <h4><i class="file orange icon"></i> Scholarships</h4>
+                    @if (count($scholarships) > 0)
+                        <div class="ui inverted accordion">
+                            @foreach ($scholarships as $scholarship)
+                                <div class="title">
+                                    <i class="dropdown icon"></i>
+                                    {{$scholarship->title}}
+                                </div>
+                                <div class="content">
+                                    <div class="transition hidden">{!! $scholarship->body !!}</div>
                                 </div>
                             @endforeach
                         </div>

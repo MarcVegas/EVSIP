@@ -31,7 +31,8 @@ class MessagesController extends Controller
             group by users.user_id, users.username, users.avatar, users.email, messages.assigned_to");
         
 
-        $departments = User::where(['role' => 'subadmin'],['user_id','=', $user_id])->get();
+        $departments = User::leftJoin('departments', 'users.user_id','=','departments.user_id')
+        ->select('users.*', 'departments.*')->where('departments.school_id',$user_id)->get();
 
         return view('chat.chats')->with('chats', $chats)->with('departments', $departments);
     }
@@ -133,10 +134,11 @@ class MessagesController extends Controller
             $query->where('from', $id)->where('to', $my_id);
         })->update(['assigned_to' => $assign]);
 
-        Message::where('from', $my_id)->where('to', $id)->update(['from', $assign]);
-        Message::where('from', $id)->where('to', $my_id)->update(['to', $assign]);
-
         Message::where(['from' => $id, 'to' => $my_id])->update(['is_read' => 0]);
+        Message::where(['to' => $id, 'from' => $my_id])->update(['is_read' => 0]);
+
+        Message::where('from', $my_id)->where('to', $id)->update(['from' => $assign]);
+        Message::where('from', $id)->where('to', $my_id)->update(['to' => $assign]);
     }
 
     /**

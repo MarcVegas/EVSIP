@@ -66,6 +66,10 @@
                     </div>
                     <div class="ui header">School Administrator</div>
                 </div>
+                <div class="ui placeholder center aligned segment">
+                    <h5>Send email reminder</h5>
+                    <a class="ui brown button" href="/dashboard/siteadmin/reminder/school/{{$profile->school_id}}"><i class="envelope icon"></i> Send Email</a>
+                </div>
             </div>
         </div>
         </div>

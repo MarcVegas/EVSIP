@@ -36,7 +36,7 @@ class SchoolRegistrationController extends Controller
         
 
         Mail::to($user->email)->send(new ApplicationMail($school->school_name));
-        return view('/dashboard/siteadmin/registrations')->with('success', $school->school_name.' application has been approved');
+        return redirect('/dashboard/siteadmin/registrations')->with('success', $school->school_name.' application has been approved');
 
     }
 

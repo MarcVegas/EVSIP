@@ -93,6 +93,7 @@ Route::get('/dashboard/siteadmin/deny/{id}', 'SchoolRegistrationController@deny'
 Route::get('/dashboard/siteadmin/usermgmt', 'UserMgmtController@allUsers');
 Route::get('/dashboard/siteadmin/show/school/{id}', 'UserMgmtController@showSchool');
 Route::get('/dashboard/siteadmin/show/student/{id}', 'UserMgmtController@showStudent');
+Route::get('/dashboard/siteadmin/reminder/school/{id}', 'UserMgmtController@sendReminder');
 
 //Login and registration controllers
 Route::get('/register/admin', 'AdminAuthController@register')->name('admin.register');

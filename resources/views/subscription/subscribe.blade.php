@@ -27,9 +27,6 @@
                                 </h3>
                             </div>
                         </div>
-                        <p style="font-weight:bold;font-size: 0.8em;opacity:60%">Please take note that manual payments made through bank transfer/deposit are not automatically
-                            detected and will require a proof of transaction sent to us. For more information <a href="">click here</a>
-                        </p>
                     </div>
                 </div>
                 <div class="six wide column">
@@ -37,24 +34,11 @@
                         <h3>Payment Methods</h3>
                         <div class="ui form">
                             <div class="grouped fields">
-                                <div class="ui raised segments">
-                                    <div class="ui green segment">
-                                        <div class="field">
-                                            <div class="ui radio bank checkbox">
-                                                <input type="radio" name="payment" id="bank" tabindex="0" class="hidden">
-                                                <label><img class="ui avatar image" style="border-radius: 0 !important" src="/storage/interface/bank-transfer.png" alt=""> <strong>Bank Transfer/Deposit</strong></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ui secondary segment">
-                                        <a class="bank" style="text-decoration: underline;font-size:0.8em" href="#">How billing for bank transfer/deposit works</a>
-                                    </div>
-                                </div>
                                 <div class="ui raised blue segment">
                                     <div class="field">
                                         <div class="ui radio checkbox">
                                             <input type="radio" name="payment" id="paypal" tabindex="0" class="hidden">
-                                            <label><img class="ui avatar image" style="border-radius: 0 !important" src="/storage/interface/credit-card.png" alt=""> <strong>Paypal/Credit Card</strong> (recommended)</label>
+                                            <label><img class="ui avatar image" style="border-radius: 0 !important" src="/storage/interface/credit-card.png" alt=""> <strong>Paypal/Credit Card</strong></label>
                                         </div>
                                     </div>
                                     <div id="paypal-button-container"></div>

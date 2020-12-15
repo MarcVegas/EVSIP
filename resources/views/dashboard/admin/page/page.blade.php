@@ -10,7 +10,6 @@
             <div class="ui secondary menu">
                 <a href="#" class="active item" data-tab="first">Announcements</a>
                 <a href="#" class="item" data-tab="second">Mission/Vision</a>
-                <a href="#" class="item" data-tab="third">Gallery</a>
                 <div class="right menu">
                     <div class="item">
                         <a class="ui inverted purple button" target="_blank" rel="noopener noreferrer" href="/page/{{Auth::user()->user_id}}"><i class="external alternate icon"></i> Visit Page</a>

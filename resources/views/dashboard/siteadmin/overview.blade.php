@@ -12,7 +12,7 @@
                     <div class="column">
                         <div class="ui raised segment">
                             <img class="ui tiny left floated image" src="/storage/interface/graph.png" alt="">
-                            <h2>1,000</h2>
+                            <h2>15</h2>
                             <p>Visits today</p>
                         </div>
                     </div>

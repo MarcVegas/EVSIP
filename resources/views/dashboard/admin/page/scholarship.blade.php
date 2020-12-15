@@ -67,3 +67,9 @@
     </div>
 </div>
 @endsection
+
+@push('ckeditor')
+<script>
+    
+</script>
+@endpush

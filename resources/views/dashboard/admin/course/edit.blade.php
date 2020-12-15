@@ -82,7 +82,7 @@
                                         <option value="">Select Department</option>
                                         @if (count($deps) > 0)
                                             @foreach ($deps as $dep)
-                                                <option value="{{ $dep->username }}"{{ ( $course->department == $dep->username ) ? ' selected' : '' }}>{{ $dep->username }}</option>
+                                                <option {{ ( $course->department == $dep->user_id ) ? ' selected' : '' }} value="{{ $dep->user_id }}"{{ ( $course->department == $dep->username ) ? ' selected' : '' }}>{{ $dep->username }}</option>
                                             @endforeach
                                         @else 
                                             <option value="0" class="ui error message" disabled>You must add department accounts first!

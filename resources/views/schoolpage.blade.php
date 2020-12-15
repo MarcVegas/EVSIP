@@ -4,12 +4,14 @@
 @include('inc.navbar')
 <div class="ui basic very padded segment" style="padding-left:9em !important;padding-right:9em !important;">
     <div class="ui raised landing very padded segment">
-        <div class="ui horizontal list">
-            <div class="item">
-                <img class="ui circular medium image" src="/storage/avatars/{{$school->avatar}}">
-                <div class="content" style="color:white">
-                    <h1 style="font-size:4em;">{{$school->school_name}}</h1>
-                    
+        <div class="ui stackable grid">
+            <div class="row">
+                <div class="five wide column">
+                    <img class="ui circular medium image" src="/storage/avatars/{{$school->avatar}}">
+                </div>
+                <div class="eleven wide column">
+                    <br>
+                    <h1 style="font-size:4em;color:white">{{$school->school_name}}</h1>
                 </div>
             </div>
         </div>
@@ -92,12 +94,11 @@
         <div class="three wide column"></div>
         <div class="ten wide column">
             <h5 class="sectiontitle"><i class="map marker icon"></i> FIND US HERE</h5>
-            <img class="ui rounded image" src="/storage/interface/maptemp.jpg" alt="">
-            {{-- @if ($location ?? '')
+            @if ($location ?? '')
                 <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCbZMPoMaWaAnuSqpN3kMq8MBjIsYpqy4U&q=place_id:{{$location->place_id}}" frameborder="0" width="840" height="435" allowfullscreen></iframe>
             @else
                 <img class="ui rounded image" src="/storage/interface/maptemp.jpg" alt="">
-            @endif --}}
+            @endif
         </div>
         <div class="three wide column"></div>
     </div>

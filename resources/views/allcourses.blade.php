@@ -18,6 +18,7 @@
             <i class="search icon"></i>
             <input type="text" name="search" placeholder="Search for..." style="width:28em">
             <button class="ui blue button" type="submit">Search Now</button>
+            <a class="ui icon button" href="/all#search-results"><i class="undo alternate icon"></i></a>
         </div><br>
     </form>
     <div id="search-results"></div>

@@ -116,7 +116,7 @@ class PagesController extends Controller
             ->select('courses.*', 'users.*', 'schools.*');
 
             foreach ($columns as $column) {
-                $query->orWhere($column,'=', $searchterm);
+                $query->orWhere($column,'LIKE', '%'.$searchterm.'%');
             }
 
             $searched = $query->get();
@@ -150,7 +150,7 @@ class PagesController extends Controller
         }
 
         $schools = School::leftJoin('users', 'schools.school_id', '=', 'users.user_id')
-        ->select('users.*', 'schools.*')->inRandomOrder()->paginate(12);
+        ->select('users.*', 'schools.*')->where('schools.status', 'active')->inRandomOrder()->paginate(12);
 
         $ads = Advertisement::leftJoin('schools', 'advertisements.user_id','=','schools.school_id')
         ->select('advertisements.*','schools.*')->get();

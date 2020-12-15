@@ -17,11 +17,6 @@
                                 @foreach ($chats as $chat)
                                     <div class="chats item" id="{{$chat->user_id}}">
                                         <img class="ui avatar left floated image" src="/storage/avatars/{{$chat->avatar}}">
-                                        @if ($chat->assigned_to != NULL)
-                                            <a class="ui mini right floated green circular label">assigned</a>
-                                        @else 
-                                            <a class="ui mini right floated blue circular label">unassigned</a>
-                                        @endif
                                         <div class="content">
                                             <div class="header">{{$chat->username}} </div>
                                             @if($chat->unread)

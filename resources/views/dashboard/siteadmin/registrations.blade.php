@@ -6,6 +6,7 @@
     @include('inc.navbar-admin')
     <div class="pale" style="margin-top: 1em; min-height: 41em;">
         <div class="ui basic segment">
+            @include('inc.messages')
             <h3>Pending Applications</h3>
             @if ($registrants ?? '')
                 @if (count($registrants) > 0)

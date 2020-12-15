@@ -28,7 +28,7 @@
                         </h1>
                         <p class="sponsor">{{$ad->school_name}}</p>
                         @if ($ad->link != null)
-                        <a class="ui purple large button" style="position: absolute;bottom: 25px;right: 5px;" href="/home/preview/{{$ad->user_id}}">Register Now</a>
+                        <a class="ui purple large button" style="position: absolute;bottom: 25px;right: 5px;" href="/home/preview/{{$ad->link}}">Register Now</a>
                         @endif
                     </div>
                 @endforeach

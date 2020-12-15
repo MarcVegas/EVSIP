@@ -52,9 +52,9 @@ class SchoolPagesController extends Controller
         $check = Page::where('id', $id)->first();
 
         if (Carbon::parse($check->enrollment_end)->lt(Carbon::now())) {
-            $course = Course::where('school_id', $id)->update(['enrollment', 'closed']);
+            Course::where('school_id', $id)->update(['enrollment' => 'closed']);
         }elseif (Carbon::parse($check->enrollment_end)->gt(Carbon::now())){
-            $course = Course::where('school_id', $id)->update(['enrollment', 'ongoing']);
+            Course::where('school_id', $id)->update(['enrollment' => 'ongoing']);
         }
     }
 }
